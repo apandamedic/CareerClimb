@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerClimb Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="Career Climb Logo">
+                <h1>Career Climb</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Resume Advisor</a></li>
+                </ul>
+                <hr>
+                <ul>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Applied</a></li>
+                    <li><a href="#">Interviewing</a></li>
+                    <li><a href="#">Offer</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="profile">
+            <h1>Profile</h1>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Input Name">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" placeholder="Input Age">
+                </div>
+                <div class="form-group">
+                    <label for="goal">Goal:</label>
+                    <textarea id="goal" placeholder="Write Goal"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bio">Bio:</label>
+                    <textarea id="bio" placeholder="Write Bio"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="education">Education:</label>
+                    <textarea id="education" placeholder="Write education level and history"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="additional-info">Additional Information:</label>
+                    <textarea id="additional-info" placeholder="Additional Information"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Resume/CV:</label>
+                    <div class="file-upload">
+                        <input type="file" id="resume">
+                        <span>Upload</span>
+                    </div>
+                </div>
+                <button type="submit">Edit</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
