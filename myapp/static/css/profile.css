@@ -125,3 +125,69 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #506a38;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5e6db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    color: #5a3a31;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.input-box {
+    width: 45%;
+    text-align: left;
+}
+
+.input-box h2 {
+    font-size: 1.2em;
+    color: #5a3a31;
+    margin-bottom: 10px;
+}
+
+.upload-box {
+    width: 100%;
+    height: 200px;
+    border: 2px solid #d4b59e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f0e8;
+}
+
+.upload-box img {
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    border: 2px solid #d4b59e;
+    padding: 10px;
+    font-size: 1em;
+}
