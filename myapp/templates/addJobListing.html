@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Add Job Listing</title>
+</head>
+
+<body>
+    <!-- nav bar -->
+    <nav class="navbar">
+        <!-- to be implemented -->
+    </nav>
+
+    <!-- add job form -->
+     <div class="container">
+        <h1>Save Job</h1>
+
+        <!-- form fields -->
+        <div class="form-group">
+            <label for="company-name">Company Name</label>
+            <input type="text" id="company-name" name="company-name" placeholder="Enter Company Name" required>
+        </div>
+        <div class="form-group">
+            <label for="job-title">Job Title</label>
+            <input type="text" id="job-title" name="job-title" placeholder="Enter Job Title" required>
+        </div>
+        <div class="form-group">
+            <label for="post-url">Post URL</label>
+            <input type="url" id="post-url" name="post-url" placeholder="Enter Job Posting URL" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Enter Job Location" required>
+        </div>
+        <div class="form-group">
+            <label for="work-style">Work Style</label>
+            <select id="work-style" name="work-style" required>
+                <option value="">Select Work Style</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="on-site">On Site</option>
+                <option value="remote">Remote</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+                <option value="">Select Status</option>
+                <option value="wishlist">Wishlist</option>
+                <option value="applied">Applied</option>
+                <option value="interviewing">Interviewing</option>
+                <option value="follow-up">Follow Up</option>
+                <option value="offer">Offer</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="deadline">Deadline</label>
+            <input type="date" id="deadline" name="deadline" required>
+        </div>
+        <div class="form-group">
+            <label for="contacts">Contacts</label>
+            <input type="text" id="contacts" name="contacts" placeholder="Enter Contacts" required>
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Enter any additional notes"></textarea>
+        </div>
+
+        <!-- form buttons -->
+        <div class="form-actions">
+            <button type="button" onclick="">Cancel</button>
+            <button type="submit" onclick="">Save Job</button>
+        </div>
+
+        </form>
+     </div>
+
+</body>
+
+<footer class="footer">
+    <p>&copy; <span id="2024"></span> Career Climb. All rights reserved.</p>
+</footer>
+
+</html>
+
