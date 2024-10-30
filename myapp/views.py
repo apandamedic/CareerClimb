@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 def profile(request):
-    return render(request, 'myapp/templates/profile.html')
+    return HttpResponse('Profile Page')
+
+def room(request):
+    return HttpResponse('Room')
 
