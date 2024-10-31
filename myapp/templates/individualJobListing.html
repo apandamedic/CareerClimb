@@ -14,89 +14,91 @@
     </nav>
 
     <h1>Job Title</h1>
-    <h2>Company Name</h2>
 
-    <!-- edit job button -->
-    <button onclick="" aria-label="Edit Job">
-        <i class="fas fa-edit"></i> <!-- Font Awesome Edit Icon -->
-    </button>
+    <div class="company-title-container">
+        <h2 class="details-company-name">Company Name</h2>
+        <!-- edit job details button -->
+        <button class="edit-job-button" onclick="" aria-label="Edit Job">
+            <i class="fas fa-edit"></i> <!-- Font Awesome Edit Icon -->
+        </button>
+    </div>
 
-    <!-- job listing details -->
-    <div class="job-listing">
-        <div class="job-detail">
-            <h2>Post URL:</h2>
-            <a id="post-url" href="[Post URL]" target="_blank">[Post URL]</a>
+    <div class="main-container">
+        <!-- Job Listing Details -->
+        <div class="job-listing">
+            <div class="job-detail">
+                <h2>Post URL:</h2>
+                <a id="post-url" href="[Post URL]" target="_blank">[Post URL]</a>
+            </div>
+            <div class="job-detail">
+                <h2>Location:</h2>
+                <p id="location">[Location]</p>
+            </div>
+            <div class="job-detail">
+                <h2>Work Style:</h2>
+                <p id="work-style">[Work Style]</p>
+            </div>
+            <div class="job-detail">
+                <h2>Status:</h2>
+                <p id="status">[Status]</p>
+            </div>
+            <div class="job-detail">
+                <h2>Deadline:</h2>
+                <p id="deadline">[Deadline]</p>
+            </div>
+            <div class="job-detail">
+                <h2>Contacts:</h2>
+                <p id="contacts">[Contacts]</p>
+            </div>
+            <div class="job-detail">
+                <h2>Notes:</h2>
+                <p id="notes">[Notes]</p>
+            </div>
         </div>
-        <div class="job-detail">
-            <h2>Location:</h2>
-            <p id="location">[Location]</p>
-        </div>
-        <div class="job-detail">
-            <h2>Work Style:</h2>
-            <p id="work-style">[Work Style]</p>
-        </div>
-        <div class="job-detail">
-            <h2>Status:</h2>
-            <p id="status">[Status]</p>
-        </div>
-        <div class="job-detail">
-            <h2>Deadline:</h2>
-            <p id="deadline">[Deadline]</p>
-        </div>
-        <div class="job-detail">
-            <h2>Contacts:</h2>
-            <p id="contacts">[Contacts]</p>
-        </div>
-        <div class="job-detail">
-            <h2>Notes:</h2>
-            <p id="notes">[Notes]</p>
+
+        <!-- Progress Bar Container -->
+        <div class="progress-container">
+            <div class="status-list">
+                <div class="status-item">
+                    <span>Offer</span>
+                    <span class="status-dot"></span>
+                </div>
+                <div class="status-item">
+                    <span>Follow Up</span>
+                    <span class="status-dot"></span>
+                </div>
+                <div class="status-item">
+                    <span>Interviewing</span>
+                    <span class="status-dot"></span>
+                </div>
+                <div class="status-item">
+                    <span>Applied</span>
+                    <span class="status-dot completed"></span>
+                </div>
+                <div class="status-item">
+                    <span>Wishlist</span>
+                    <span class="status-dot completed"></span>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+
+            <div class="ladder-image">
+                <img src="../static/images/ladder.png" alt="Ladder" />
+            </div>
+    
+            <div class="progress-koala-image">
+                <img src="path/to/koala-image.png" alt="Koala" />
+            </div>
         </div>
     </div>
 
-    <div class="progress-container">
-        <!-- placeholder for Ladder Image -->
-        <div class="ladder-image">
-            <img src="path/to/ladder-image.png" alt="Ladder" />
-        </div>
-    
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-    
-        <!-- placeholder for Koala Image -->
-        <div class="koala-image">
-            <img src="path/to/koala-image.png" alt="Koala" />
-        </div>
-    
-        <div class="status-list">
-            <div class="status-item">
-                <span class="status-dot completed"></span>
-                <span>Wishlist</span>
-            </div>
-            <div class="status-item">
-                <span class="status-dot completed"></span>
-                <span>Applied</span>
-            </div>
-            <div class="status-item">
-                <span class="status-dot"></span>
-                <span>Interviewing</span>
-            </div>
-            <div class="status-item">
-                <span class="status-dot"></span>
-                <span>Follow Up</span>
-            </div>
-            <div class="status-item">
-                <span class="status-dot"></span>
-                <span>Offer</span>
-            </div>
-        </div>
-    </div>
-
+    <footer class="footer">
+        <p>&copy; <span id="2024"></span> Career Climb. All rights reserved.</p>
+    </footer>
 
 </body>
-
-<footer class="footer">
-    <p>&copy; <span id="2024"></span> Career Climb. All rights reserved.</p>
-</footer>
 
 </html>
