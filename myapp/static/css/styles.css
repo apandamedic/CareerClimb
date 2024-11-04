@@ -114,7 +114,7 @@ p {
     margin-bottom: 20px;
 }
 
-form {
+profile-form {
     background-color: #f7e4d7;
     padding: 7px;
     border: 1px solid #b38c6b;
@@ -156,7 +156,7 @@ form {
     text-align: center;
 }
 
-button[type="submit"] {
+p1-button[type="submit"] {
     background-color: #68824b;
     color: #fff;
     border: none;
@@ -167,7 +167,7 @@ button[type="submit"] {
     margin-top: 20px;
 }
 
-button[type="submit"]:hover {
+p1-button[type="submit"]:hover {
     background-color: #506a38;
 }
 
