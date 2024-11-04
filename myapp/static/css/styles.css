@@ -48,6 +48,13 @@ p {
 /*******************************************************************/
 
 /* Navbar Styling */
+
+.container {
+    display: flex;                   /* Use flexbox to align sidebar and profile */
+    height: 100vh;                   /* Full height for sidebar */
+    align-items: flex-start;         /* Align items to the top */
+}
+
 .sidebar {
     width: 250px;
     background-color: #68824b;
@@ -98,7 +105,7 @@ p {
 /* Profile Styling */
 .profile {
     flex: 1;
-    padding: 40px;
+    padding: 20px;
 }
 
 .profile h1 {
@@ -163,7 +170,16 @@ button[type="submit"]:hover {
     background-color: #506a38;
 }
 
-
+.footer {
+    background-color: #f5e2d6;       /* Same background color as body for consistency */
+    color: #633D34;                  /* Footer text color */
+    text-align: center;              /* Center text alignment */
+    padding: 20px;   
+    width: 100%;                     /* Full width */
+    font-family: Arial, sans-serif;   /* Consistent font */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    margin-top: auto;                /* Push footer to the bottom when content is not enough */
+}
 /*******************************************************************/
 
 /* Add/Edit Job Details Styling */
