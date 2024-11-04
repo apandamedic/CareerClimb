@@ -7,5 +7,5 @@ def profile(request):
     
 urlpatterns = [
     path('admin/', admin.site.urls),  # For the admin interface
-    path('', profile),  # Includes URLs from the `myapp` app
+    path('', include('myapp.urls')),  # Includes URLs from the `myapp` app
 ]
