@@ -7,21 +7,18 @@ def profile(request):
 def room(request):
     return HttpResponse('Room')
 
-def add_job(request):
+# Add job listing view
+def add_job_listing(request):
     return render(request, 'addJobListing.html')
 
-def edit_job(request):
+# Edit job listing view
+def edit_job_listing(request):
     return render(request, 'editJobListing.html')
 
-def individual_job(request):
+# Individual job listing view
+def individual_job_listing(request):
     return render(request, 'individualJobListing.html')
 
+# Resume advisor view
 def resume_advisor(request):
     return render(request, 'ResumeAdvisor.html')
-
-# Uncomment these when you are ready to use them
-# def interviewing(request):
-#     return render(request, 'interviewing.html')
-
-# def offer(request):
-#     return render(request, 'offer.html')

@@ -1,15 +1,18 @@
 from django.urls import path
+from django.shortcuts import redirect
 from . import views
 
 urlpatterns = [
-    path('profile/', views.profile, name='profile'),
+    path('', lambda request: redirect('profile/')),  # Redirect root to profile
+    path('profile/', views.profile, name='profile'),  # Profile page URL
+    path('add-job/', views.add_job_listing, name='add_job'),
+
+    # Edit job listing page URL
+    path('edit-job/', views.edit_job_listing, name='edit_job'),
+
+    # Individual job listing page URL
+    path('job/', views.individual_job_listing, name='individual_job'),
+
+    # Resume advisor page URL
     path('resume-advisor/', views.resume_advisor, name='resume_advisor'),
-    path('addJobListing/', views.add_job, name='add_job'),  # Add Job URL
-    path('editJobListing/', views.edit_job, name='edit_job'),  # Edit Job URL
-    path('individualJobListing/', views.individual_job, name='individual_job'),  # Individual Job Listing URL
-    # Comment these out until the views are created
-    # path('wishlist/', views.wishlist, name='wishlist'),
-    # path('applied/', views.applied, name='applied'),
-    # path('interviewing/', views.interviewing, name='interviewing'),
-    # path('offer/', views.offer, name='offer'),
 ]
