@@ -15,4 +15,10 @@ urlpatterns = [
 
     # Resume advisor page URL
     path('resume-advisor/', views.resume_advisor, name='resume_advisor'),
+
+    #Login
+    path('login/', views.login, name = 'login'),
+
+    #Register
+    path('register/', views.register, name = 'register'),
 ]

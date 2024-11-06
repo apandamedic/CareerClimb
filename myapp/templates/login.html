@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel = "stylesheet" href = "{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class = 'introduction'>
+    <header>
+        <h1>Welcome to CareerClimb!</h1>
+        <p>Take your Career to new heights with CareerClimb! We provide expert resume advice and job application tracking that helps you
+            stay organized as you apply. Watch our friendly koala mascot climb and higher with each milestone, motivating you as you move closer
+            to landing your dream job. From resume tips to visual progress tracking, Career Climb is your go-to tool for success.
+        </p>
+    </header>
+</div>
+
+    
+<main>
+    <div class = 'login-container'>
+        <form class = "login-form" action = "/login" method = "POST">
+            <h2>Login</h2>
+            <label for = "email">Email:</label>
+            <input type = "text" id="email" name = "email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+            <p><a href="/forgot-password">Forgot Password?</a></p>
+            <p><a href="register.html">New User? Register Here</a></p>
+        </form>
+    </div>       
+</main>
+
+    
+    <footer>
+        
+    </footer>
+</body>
+</html>
