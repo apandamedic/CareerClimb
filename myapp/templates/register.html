@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <link rel = "stylesheet" href = "{% static 'css/styles.css' %}">
+</head>
+<body>
+    
+    <header>
+       <h1>Career Climb Sign Up</h1>
+    </header>
+
+   
+    <main>
+        <form action = "/register" method = "POST">
+            <label for = "firstName">First Name</label>
+            <input type = "text" id="first name" name = "First Name" required>
+            <label for="lastName">Last Name</label>
+            <input type="lastName" id="lastName" name="Last Name" required>
+            <label for = "email">Email</label>
+            <input type = "text" id="email" name = "email" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <label for="password">Re-Type Password</label>
+            <input type="password" id="retypePassword" name="retypePassword" required>
+            <button type="submit">Register</button>
+        </form>
+        
+    </main>
+
+    
+    <footer>
+       
+    </footer>
+</body>
+</html>

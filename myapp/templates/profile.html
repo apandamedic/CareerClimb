@@ -1,34 +1,38 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareerClimb Profile</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
+
+        <!-- Sidebar Section -->
         <aside class="sidebar">
             <div class="logo">
-                <img src="logo.png" alt="Career Climb Logo">
+                <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
                 <h1>Career Climb</h1>
             </div>
             <nav class="nav">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Resume Advisor</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'resume_advisor' %}">Resume Advisor</a></li>
                 </ul>
                 <hr>
                 <ul>
-                    <li><a href="#">Wishlist</a></li>
-                    <li><a href="#">Applied</a></li>
-                    <li><a href="#">Interviewing</a></li>
-                    <li><a href="#">Offer</a></li>
+                    <li><a href="{% url 'add_job' %}">Add Job Listing</a></li>
+                    <li><a href="{% url 'edit_job' %}">Edit Job Listing</a></li>
+                    <li><a href="{% url 'individual_job' %}">Individual Job Listing</a></li>
                 </ul>
             </nav>
         </aside>
 
+        <!-- Profile Form Section -->
         <main class="profile">
             <h1>Profile</h1>
             <form>
@@ -61,9 +65,16 @@
                         <span>Upload</span>
                     </div>
                 </div>
-                <button type="submit">Edit</button>
+                <p1-button type="submit">Edit</p1-button>
             </form>
         </main>
+
     </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; <span id="2024">2024</span> CareerClimb. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>

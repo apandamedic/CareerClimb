@@ -48,6 +48,13 @@ p {
 /*******************************************************************/
 
 /* Navbar Styling */
+
+.container {
+    display: flex;                   /* Use flexbox to align sidebar and profile */
+    height: 100vh;                   /* Full height for sidebar */
+    align-items: flex-start;         /* Align items to the top */
+}
+
 .sidebar {
     width: 250px;
     background-color: #68824b;
@@ -98,7 +105,8 @@ p {
 /* Profile Styling */
 .profile {
     flex: 1;
-    padding: 40px;
+    padding: 20px;
+    margin-left: 20px;
 }
 
 .profile h1 {
@@ -106,9 +114,9 @@ p {
     margin-bottom: 20px;
 }
 
-form {
+profile-form {
     background-color: #f7e4d7;
-    padding: 20px;
+    padding: 7px;
     border: 1px solid #b38c6b;
     border-radius: 8px;
 }
@@ -148,7 +156,7 @@ form {
     text-align: center;
 }
 
-button[type="submit"] {
+p1-button[type="submit"] {
     background-color: #68824b;
     color: #fff;
     border: none;
@@ -159,7 +167,7 @@ button[type="submit"] {
     margin-top: 20px;
 }
 
-button[type="submit"]:hover {
+p1-button[type="submit"]:hover {
     background-color: #506a38;
 }
 
@@ -330,6 +338,32 @@ button[type="submit"]:hover {
     font-size: 1rem;
 }
 
+
+
+
+
+/*******************************************************************/
+
+
+/*Login page */
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+
+
+/*Resume Advisor*/
+
+
+
+/*******************************************************************/
 :root {
     --v-progress-left: 50px;
     --v-progress-item-height-width: 12px;
