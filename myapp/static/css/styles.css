@@ -225,19 +225,15 @@ button[type="submit"]:hover {
     margin-top: 20px;
 }
 
-/* Button styling */
-.saveJob-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
 /* Button specific styles */
-.saveJob-cancel-btn {
-    background-color: #f5e2d6;
-    color: #633d34;
+.saveJob-cancel-btn,
+.saveJob-submit-btn {
+    padding: 10px 20px; 
+    border: none;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .saveJob-submit-btn {
@@ -245,19 +241,24 @@ button[type="submit"]:hover {
     color: #f5e2d6;
 }
 
+.saveJob-cancel-btn {
+    background-color: #f5e2d6;
+    color: #633d34;
+}
+
 /* Delete button styling */
 .saveJob-delete-btn {
-    color: #2C761BA3; /* Text color for delete button */
-    font-size: 1.5rem; /* Larger icon size */
+    color: #2C761BA3;
+    font-size: 1.5rem;
     background-color: #f5e2d6;
     margin-right: auto;
+    border: none;
 }
 
 /* Align Save and Cancel buttons to the right */
 .saveJob-right-buttons {
     display: flex;
     gap: 10px;
-    justify-content: flex-end;
     align-items: center;
     margin-left: auto;
 }
@@ -268,8 +269,8 @@ button[type="submit"]:hover {
     font-size: 1rem;
     border: 1px solid #ddd;
     border-radius: 4px;
-    resize: vertical; /* Allow vertical resizing only */
-    font-family: inherit; /* Matches the font with other input fields */
+    resize: vertical; 
+    font-family: inherit; 
 }
 
 /*******************************************************************/
@@ -297,26 +298,26 @@ button[type="submit"]:hover {
 
 /* Main Container for Job Listing and Progress Bar */
 .main-container {
-    display: flex;                      /* Use Flexbox for layout */
-    justify-content: space-between;     /* Space between job details and progress bar */
-    margin: 20px;                      /* Margin around the main container */
+    display: flex;                    
+    justify-content: space-between;   
+    margin: 20px;                     
 }
 
 /* Job Listing Container */
 .job-listing {
-    width: 100%;                       /* Full width of the parent container */
-    max-width: 600px;                  /* Maximum width */
-    height: 700px;                     /* Fixed height */
-    padding: 20px;                     /* Padding inside the container */
-    border: 2px solid #633D34;         /* Optional: border to match the style */
-    border-radius: 8px;                /* Rounded corners */
-    background-color: #f5e2d6;         /* Background color */
-    overflow: auto;                     /* Add scrollbar if content overflows */
+    width: 100%;                     
+    max-width: 600px;                
+    height: 700px;            
+    padding: 20px;           
+    border: 2px solid #633D34;         
+    border-radius: 8px;               
+    background-color: #f5e2d6;        
+    overflow: auto;                  
 }
 
 /* Job Detail Styles */
 .job-detail {
-    margin-bottom: 15px;               /* Spacing between details */
+    margin-bottom: 15px;         
 }
 
 .job-detail h2 {
@@ -329,8 +330,96 @@ button[type="submit"]:hover {
     font-size: 1rem;
 }
 
-/*******************************************************************/
+:root {
+    --v-progress-left: 50px;
+    --v-progress-item-height-width: 12px;
+    --v-progress-line-height: 35px;
+    --v-progress-line-width: 3px;
+    --v-progress-gap: 13px;
+    --blue: #0081C9;
+    --green: #159895;
+    --light-blue: #5BC0F8;
+  }
+  
+  /* Vertical Progress */
+  .v-progress {
+    padding: 20px;
+    font-weight: bold;
+  }
+  
+  .v-progress ul {
+    list-style: none;
+  }
+  
+  .v-progress-item {
+    position: relative;
+    margin-left: var(--v-progress-left);
+    height: var(--v-progress-item-height-width);
+    line-height: var(--v-progress-item-height-width);
+    margin-bottom: var(--v-progress-line-height);
+  }
+  
+  .v-progress-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .v-progress-item:last-child:after {
+    border-left: 0;
+  }
+  
+  /* Dot before each step */
+  .v-progress-item:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: var(--v-progress-item-height-width);
+    height: var(--v-progress-item-height-width);
+    left: calc(0px - var(--v-progress-left));
+    border-radius: 50%;
+    background-color: #ccc;
+  }
+  
+  /* Line connecting steps */
+  .v-progress-item:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: calc(var(--v-progress-line-height) - var(--v-progress-gap));
+    top: calc(var(--v-progress-item-height-width) + var(--v-progress-gap) / 2);
+    left: calc(0px - var(--v-progress-left) + var(--v-progress-item-height-width) / 2 - var(--v-progress-line-width) / 2);
+    border-left: var(--v-progress-line-width) solid #ccc;
+  }
+  
+  /* Completed step styles */
+  .v-progress-item.completed:after {
+    border-color: #2C761BA3;
+  }
+  
+  .v-progress-item.completed:before {
+    content: "✔";
+    font-size: 11px;
+    text-align: center;
+    color: white;
+    background: #2C761BA3;
+    height: calc(var(--v-progress-item-height-width) + 4px);
+    width: calc(var(--v-progress-item-height-width) + 4px);
+    line-height: calc(var(--v-progress-item-height-width) + 4px);
+    left: calc(0px - var(--v-progress-left) - 2px);
+    top: calc(0px - 2px);
+  }
+  
+  /* In-progress step styles */
+  .v-progress-item.inprogress:before {
+    background-color: white;
+    outline: calc(var(--v-progress-item-height-width) / 2) solid #506a38;
+    top: calc(0px - var(--v-progress-item-height-width) / 2);
+  }
+  
+  /* Adding spacing and alignment */
+  .v-progress-item.completed,
+  .v-progress-item.inprogress {
+    padding-bottom: var(--v-progress-gap);
+  }
 
 
-
-
+  
