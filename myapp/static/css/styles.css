@@ -338,32 +338,6 @@ p1-button[type="submit"]:hover {
     font-size: 1rem;
 }
 
-
-
-
-
-/*******************************************************************/
-
-
-/*Login page */
-
-.login-container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-
-
-/*Resume Advisor*/
-
-
-
-/*******************************************************************/
 :root {
     --v-progress-left: 50px;
     --v-progress-item-height-width: 12px;
@@ -454,6 +428,31 @@ p1-button[type="submit"]:hover {
   .v-progress-item.inprogress {
     padding-bottom: var(--v-progress-gap);
   }
+
+
+/*******************************************************************/
+
+
+/*Login page */
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+
+
+/*Resume Advisor*/
+
+
+
+/*******************************************************************/
+
 
 
   
