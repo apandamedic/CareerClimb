@@ -10,16 +10,16 @@ body {
     background-color: #f5e2d6;       /* Background color for the body */
     color: #633D34;                  /* Text color */
     min-height: 100vh;             
-    display: flex;           
-    flex-direction: column;          
+    display: flex; 
+    flex-direction: column;         
 }
 
 /* Header styles */
 h1 {
     color: #633d34;                  
     font-size: 3rem;                      
-    margin-top: 20px;
-    padding: 20px;                  
+    margin-top: 20px; 
+    padding: 20px;            
 }
 
 /* Paragraph styles */
@@ -66,18 +66,19 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 30px;
 }
 
 .logo img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
+    height: 100px;
+    margin-bottom: -20px;
 }
 
 .logo h1 {
     color: #f5e2d6;
     font-size: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nav ul {
@@ -175,6 +176,13 @@ p1-button[type="submit"]:hover {
 /*******************************************************************/
 
 /* Add/Edit Job Details Styling */
+.main-content-with-sidebar {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow content to take up remaining space */
+    padding: 20px;
+}
+
  /* Container styling with a brown border */
 .saveJob-container {
     width: 100%;
@@ -242,6 +250,7 @@ p1-button[type="submit"]:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
 }
 
 .saveJob-submit-btn {
@@ -257,10 +266,10 @@ p1-button[type="submit"]:hover {
 /* Delete button styling */
 .saveJob-delete-btn {
     color: #2C761BA3;
-    font-size: 1.5rem;
     background-color: #f5e2d6;
     margin-right: auto;
     border: none;
+    font-size: 1rem;
 }
 
 /* Align Save and Cancel buttons to the right */
