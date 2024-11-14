@@ -77,8 +77,11 @@ def delete_job_listing(request, job_id):
     return render('DASHBOARD')
 
 # Individual job listing view
-def individual_job_listing(request):
-    return render(request, 'individualJobListing.html')
+def individual_job_listing(request, job_id):
+    # Retrieve the job listing by ID
+    job = get_object_or_404(JobListing, id=job_id)
+
+    return render(request, 'individualJobListing.html', {'job': job})
 
 # Resume advisor view
 def resume_advisor(request):

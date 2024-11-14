@@ -1,81 +1,102 @@
+{% load static %}
+
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/styles.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
     <title>Individual Job Listing Details</title>
 </head>
 
 <body>
-    <!-- nav bar -->
-    <nav class="navbar">
-        <!-- to be implemented -->
-    </nav>
-
-    <h1>Job Title</h1>
-
-    <div class="company-title-container">
-        <h2 class="details-company-name">Company Name</h2>
-        <!-- edit job details button -->
-        <button class="edit-job-button" onclick="" aria-label="Edit Job">
-            <i class="fas fa-edit"></i> <!-- Font Awesome Edit Icon -->
-        </button>
-    </div>
-
-    <div class="main-container">
-        <!-- Job Listing Details -->
-        <div class="job-listing">
-            <div class="job-detail">
-                <h2>Post URL:</h2>
-                <a id="post-url" href="[Post URL]" target="_blank">[Post URL]</a>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
+                <h1>Career Climb</h1>
             </div>
-            <div class="job-detail">
-                <h2>Location:</h2>
-                <p id="location">[Location]</p>
-            </div>
-            <div class="job-detail">
-                <h2>Work Style:</h2>
-                <p id="work-style">[Work Style]</p>
-            </div>
-            <div class="job-detail">
-                <h2>Status:</h2>
-                <p id="status">[Status]</p>
-            </div>
-            <div class="job-detail">
-                <h2>Deadline:</h2>
-                <p id="deadline">[Deadline]</p>
-            </div>
-            <div class="job-detail">
-                <h2>Contacts:</h2>
-                <p id="contacts">[Contacts]</p>
-            </div>
-            <div class="job-detail">
-                <h2>Notes:</h2>
-                <p id="notes">[Notes]</p>
-            </div>
-        </div>
-
-        <!-- Progress Bar Container -->
-        <div class="progress-container">
-            <div class="v-progress">
+            <nav class="nav">
                 <ul>
-                    <li class="v-progress-item">Offer</li>
-                    <li class="v-progress-item">Follow Up</li>
-                    <li class="v-progress-item inprogress">Interview</li>
-                    <li class="v-progress-item completed">Applied</li>
-                    <li class="v-progress-item completed">Wishlist</li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'resume_advisor' %}">Resume Advisor</a></li>
                 </ul>
-                
+                <hr>
+                <ul>
+                    <li><a href="{% url 'add_job_listing' %}">Add Job Listing</a></li>
+                    <li><a href="{% url 'edit_job_listing' job_id=1 %}">Edit Job Listing</a></li>
+                    <li><a href="{% url 'individual_job_listing' job_id=1 %}">Individual Job Listing</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="main-content-with-sidebar">
+            <h1>{{ job.job_title }}</h1>
+
+            <div class="company-title-container">
+                <h2 class="details-company-name">{{ job.company_name }}</h2>
+                <a href="{% url 'edit_job_listing' job.id %}" class="edit-job-button" aria-label="Edit Job">
+                    <i class="fas fa-edit"></i> <!-- Font Awesome Edit Icon -->
+                </a>
             </div>
 
-            <div class="ladder-image">
-                <img src="../static/images/ladder.png" alt="Ladder" />
-            </div>
-    
-            <!-- placeholder for koala -->
-            <div class="progress-koala-image">
-                <img src="../static/images/koala.png" alt="Koala" />
+            <div class="main-container">
+                <!-- Job Listing Details -->
+                <div class="job-listing">
+                    <div class="job-detail">
+                        <h2>Post URL:</h2>
+                        <a id="post-url" href="{{ job.post_url }}" target="_blank">{{ job.post_url }}</a>
+                    </div>
+                    <div class="job-detail">
+                        <h2>Location:</h2>
+                        <p id="location">{{ job.location }}</p>
+                    </div>
+                    <div class="job-detail">
+                        <h2>Work Style:</h2>
+                        <p id="work-style">{{ job.work_style }}</p>
+                    </div>
+                    <div class="job-detail">
+                        <h2>Status:</h2>
+                        <p id="status">{{ job.status }}</p>
+                    </div>
+                    <div class="job-detail">
+                        <h2>Deadline:</h2>
+                        <p id="deadline">{{ job.deadline }}</p>
+                    </div>
+                    <div class="job-detail">
+                        <h2>Contacts:</h2>
+                        <p id="contacts">{{ job.contacts }}</p>
+                    </div>
+                    <div class="job-detail">
+                        <h2>Notes:</h2>
+                        <p id="notes">{{ job.notes }}</p>
+                    </div>
+                </div>
+
+                <!-- Progress Bar Container -->
+                <div class="progress-container">
+                    <div class="v-progress">
+                        <ul>
+                            <li class="v-progress-item">Offer</li>
+                            <li class="v-progress-item">Follow Up</li>
+                            <li class="v-progress-item inprogress">Interview</li>
+                            <li class="v-progress-item completed">Applied</li>
+                            <li class="v-progress-item completed">Wishlist</li>
+                        </ul>
+                        
+                    </div>
+
+                    <div class="ladder-image">
+                        <img src="{% static 'images/ladder.png' %}" alt="Ladder" />
+                    </div>
+            
+                    <!-- placeholder for koala -->
+                    <div class="progress-koala-image">
+                        <img src="{% static 'images/koala.png' %}" alt="Koala" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
