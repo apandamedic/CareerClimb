@@ -10,6 +10,36 @@ def room(request):
 
 # Add job listing view
 def add_job_listing(request):
+    if request.method == 'POST':
+        # Retrieve form data from the POST request
+        company_name = request.POST.get('company-name')
+        job_title = request.POST.get('job-title')
+        post_url = request.POST.get('post-url')
+        location = request.POST.get('location')
+        work_style = request.POST.get('work-style')
+        salary = request.POST.get('salary')
+        status = request.POST.get('status')
+        deadline = request.POST.get('deadline')
+        contacts = request.POST.get('contacts')
+        notes = request.POST.get('notes')
+
+    # Create a new job entry in the database
+        JobListing.objects.create(
+            company_name=company_name,
+            job_title=job_title,
+            post_url=post_url,
+            location=location,
+            work_style=work_style,
+            salary=salary,
+            status=status,
+            deadline=deadline,
+            contacts=contacts,
+            notes=notes
+        )
+
+        # *********************** NEEDS TO BE EDITED ****************
+        return redirect('profile')
+
     return render(request, 'addJobListing.html')
 
 # Edit job listing view

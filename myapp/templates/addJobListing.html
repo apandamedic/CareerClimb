@@ -1,107 +1,120 @@
+{% load static %}
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Add Job Listing</title>
 </head>
 
 <body>
-    <!-- nav bar -->
-    <nav class="navbar">
-        <!-- to be implemented -->
-    </nav>
-
-    <h1 class="saveJob-title">Save Job</h1>
-
-    <!-- add job form -->
-    <div class="saveJob-container">
-
-        <!-- form fields -->
-        <!-- Two-column layout for company name and job title -->
-        <div class="saveJob-two-column">
-            <div class="saveJob-form-group">
-                <label for="company-name" class="saveJob-label">Company Name</label>
-                <input type="text" id="company-name" name="company-name" class="saveJob-input" placeholder="Enter Company Name" required>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
+                <h1>Career Climb</h1>
             </div>
-            <div class="saveJob-form-group">
-                <label for="job-title" class="saveJob-label">Job Title</label>
-                <input type="text" id="job-title" name="job-title" class="saveJob-input" placeholder="Enter Job Title" required>
-            </div>
-        </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'resume_advisor' %}">Resume Advisor</a></li>
+                </ul>
+                <hr>
+                <ul>
+                    <li><a href="{% url 'add_job_listing' %}">Add Job Listing</a></li>
+                    <li><a href="{% url 'edit_job_listing' job_id=1 %}">Edit Job Listing</a></li>
+                    <li><a href="{% url 'individual_job_listing' job_id=1 %}">Individual Job Listing</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-        <!-- Post URL (full width) -->
-        <div class="saveJob-form-group">
-            <label for="post-url" class="saveJob-label">Post URL</label>
-            <input type="url" id="post-url" name="post-url" class="saveJob-input" placeholder="Enter Job Posting URL" required>
-        </div>
+        <div class="main-content-with-sidebar">
+            <h1 class="saveJob-title">Add Job Listing</h1>
+            <div class="saveJob-container">
+                <form method="POST" action="{% url 'add_job_listing' %}">
+                    {% csrf_token %}
+                    
+                    <!-- Company Name and Job Title -->
+                    <div class="saveJob-two-column">
+                        <div class="saveJob-form-group">
+                            <label for="company-name" class="saveJob-label">Company Name</label>
+                            <input type="text" id="company-name" name="company-name" class="saveJob-input" placeholder="Enter Company Name" required>
+                        </div>
+                        <div class="saveJob-form-group">
+                            <label for="job-title" class="saveJob-label">Job Title</label>
+                            <input type="text" id="job-title" name="job-title" class="saveJob-input" placeholder="Enter Job Title" required>
+                        </div>
+                    </div>
 
-        <!-- Two-column layout for location and work style -->
-        <div class="saveJob-two-column">
-            <div class="saveJob-form-group">
-                <label for="location" class="saveJob-label">Location</label>
-                <input type="text" id="location" name="location" class="saveJob-input" placeholder="Enter Job Location" required>
-            </div>
-            <div class="saveJob-form-group">
-                <label for="work-style" class="saveJob-label">Work Style</label>
-                <select id="work-style" name="work-style" class="saveJob-select" required>
-                    <option value="">Select Work Style</option>
-                    <option value="hybrid">Hybrid</option>
-                    <option value="on-site">On Site</option>
-                    <option value="remote">Remote</option>
-                </select>
-            </div>
-        </div>
+                    <!-- Post URL, Location, and Work Style -->
+                    <div class="saveJob-form-group">
+                        <label for="post-url" class="saveJob-label">Post URL</label>
+                        <input type="url" id="post-url" name="post-url" class="saveJob-input" placeholder="Enter Job Posting URL" required>
+                    </div>
+                    <div class="saveJob-two-column">
+                        <div class="saveJob-form-group">
+                            <label for="location" class="saveJob-label">Location</label>
+                            <input type="text" id="location" name="location" class="saveJob-input" placeholder="Enter Job Location" required>
+                        </div>
+                        <div class="saveJob-form-group">
+                            <label for="work-style" class="saveJob-label">Work Style</label>
+                            <select id="work-style" name="work-style" class="saveJob-select" required>
+                                <option value="">Select Work Style</option>
+                                <option value="hybrid">Hybrid</option>
+                                <option value="on-site">On Site</option>
+                                <option value="remote">Remote</option>
+                            </select>
+                        </div>
+                    </div>
 
-        <!-- Three-column layout for salary, status, and deadline -->
-        <div class="saveJob-three-column">
-            <div class="saveJob-form-group">
-                <label for="salary" class="saveJob-label">Salary</label>
-                <input type="text" id="salary" name="salary" class="saveJob-input" placeholder="Enter Salary" required>
-            </div>
-            <div class="saveJob-form-group">
-                <label for="status" class="saveJob-label">Status</label>
-                <select id="status" name="status" class="saveJob-select" required>
-                    <option value="">Select Status</option>
-                    <option value="wishlist">Wishlist</option>
-                    <option value="applied">Applied</option>
-                    <option value="interviewing">Interviewing</option>
-                    <option value="follow-up">Follow Up</option>
-                    <option value="offer">Offer</option>
-                </select>
-            </div>
-            <div class="saveJob-form-group">
-                <label for="deadline" class="saveJob-label">Deadline</label>
-                <input type="date" id="deadline" name="deadline" class="saveJob-input" required>
-            </div>
-        </div>
+                    <!-- Salary, Status, and Deadline -->
+                    <div class="saveJob-three-column">
+                        <div class="saveJob-form-group">
+                            <label for="salary" class="saveJob-label">Salary</label>
+                            <input type="text" id="salary" name="salary" class="saveJob-input" placeholder="Enter Salary" required>
+                        </div>
+                        <div class="saveJob-form-group">
+                            <label for="status" class="saveJob-label">Status</label>
+                            <select id="status" name="status" class="saveJob-select" required>
+                                <option value="">Select Status</option>
+                                <option value="wishlist">Wishlist</option>
+                                <option value="applied">Applied</option>
+                                <option value="interviewing">Interviewing</option>
+                                <option value="follow-up">Follow Up</option>
+                                <option value="offer">Offer</option>
+                            </select>
+                        </div>
+                        <div class="saveJob-form-group">
+                            <label for="deadline" class="saveJob-label">Deadline</label>
+                            <input type="date" id="deadline" name="deadline" class="saveJob-input" required>
+                        </div>
+                    </div>
 
-        <!-- Full width fields -->
-        <div class="saveJob-form-group">
-            <label for="contacts" class="saveJob-label">Contacts</label>
-            <input type="text" id="contacts" name="contacts" class="saveJob-input" placeholder="Enter Contacts">
-        </div>
-        <div class="saveJob-form-group">
-            <label for="notes" class="saveJob-label">Notes</label>
-            <textarea id="notes" name="notes" class="saveJob-textarea" rows="4" placeholder="Enter any additional notes"></textarea>
-        </div>
+                    <!-- Contacts and Notes -->
+                    <div class="saveJob-form-group">
+                        <label for="contacts" class="saveJob-label">Contacts</label>
+                        <input type="text" id="contacts" name="contacts" class="saveJob-input" placeholder="Enter Contacts">
+                    </div>
+                    <div class="saveJob-form-group">
+                        <label for="notes" class="saveJob-label">Notes</label>
+                        <textarea id="notes" name="notes" class="saveJob-textarea" rows="4" placeholder="Enter any additional notes"></textarea>
+                    </div>
 
-        <!-- Form buttons -->
-        <div class="saveJob-form-actions">
+                    <!-- ******* TO BE EDITED ANCHOR *********** -->
+                    <!-- Form buttons -->
+                    <div class="saveJob-form-actions">
+                        <!-- Submit and Cancel Buttons -->
+                        <div class="saveJob-right-buttons">
+                            <a href="{% url 'profile' %}" class="saveJob-button saveJob-cancel-btn">Cancel</a>
+                            <button type="submit" class="saveJob-button saveJob-submit-btn">Save Job</button>
+                        </div>
+                    </div>
 
-            <!-- Save and Cancel buttons on the right -->
-            <div class="saveJob-right-buttons">
-                <button type="button" class="saveJob-button saveJob-cancel-btn">Cancel</button>
-                <button type="submit" class="saveJob-button saveJob-submit-btn">Save Job</button>
+                </form>
             </div>
         </div>
     </div>
-
-    <footer class="footer">
-        <p>&copy; <span id="2024"></span> Career Climb. All rights reserved.</p>
-    </footer>
-
 </body>
-
 </html>
-
