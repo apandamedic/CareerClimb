@@ -9,9 +9,9 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f5e2d6;       /* Background color for the body */
     color: #633D34;                  /* Text color */
-    min-height: 100vh;               /* Ensure the body takes at least the full viewport height */
-    display: flex;                   /* Use flexbox for layout */
-    flex-direction: column;          /* Arrange children in a column */
+    min-height: 100vh;             
+    display: flex;           
+    flex-direction: column;          
 }
 
 /* Header styles */
@@ -307,8 +307,9 @@ p1-button[type="submit"]:hover {
 /* Main Container for Job Listing and Progress Bar */
 .main-container {
     display: flex;                    
-    justify-content: space-between;   
-    margin: 20px;                     
+    justify-content: flex-start;   
+    margin: 20px;  
+    gap: 20px;                   
 }
 
 /* Job Listing Container */
@@ -320,7 +321,8 @@ p1-button[type="submit"]:hover {
     border: 2px solid #633D34;         
     border-radius: 8px;               
     background-color: #f5e2d6;        
-    overflow: auto;                  
+    overflow: auto;         
+    min-width: 30%;      
 }
 
 /* Job Detail Styles */
@@ -341,94 +343,146 @@ p1-button[type="submit"]:hover {
 :root {
     --v-progress-left: 50px;
     --v-progress-item-height-width: 12px;
-    --v-progress-line-height: 35px;
+    --v-progress-line-height: 90px;
     --v-progress-line-width: 3px;
     --v-progress-gap: 13px;
     --blue: #0081C9;
     --green: #159895;
     --light-blue: #5BC0F8;
-  }
-  
-  /* Vertical Progress */
-  .v-progress {
+}
+
+/* Vertical Progress */
+.v-progress {
     padding: 20px;
     font-weight: bold;
-  }
-  
-  .v-progress ul {
+    height: 500px;
+}
+
+.v-progress ul {
     list-style: none;
-  }
-  
-  .v-progress-item {
+    height: 500px;
+}
+
+.v-progress-item {
     position: relative;
     margin-left: var(--v-progress-left);
     height: var(--v-progress-item-height-width);
     line-height: var(--v-progress-item-height-width);
     margin-bottom: var(--v-progress-line-height);
-  }
-  
-  .v-progress-item:last-child {
-    margin-bottom: 0;
-  }
-  
-  .v-progress-item:last-child:after {
-    border-left: 0;
-  }
-  
-  /* Dot before each step */
-  .v-progress-item:before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    width: var(--v-progress-item-height-width);
-    height: var(--v-progress-item-height-width);
-    left: calc(0px - var(--v-progress-left));
-    border-radius: 50%;
-    background-color: #ccc;
-  }
-  
-  /* Line connecting steps */
-  .v-progress-item:after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    height: calc(var(--v-progress-line-height) - var(--v-progress-gap));
-    top: calc(var(--v-progress-item-height-width) + var(--v-progress-gap) / 2);
-    left: calc(0px - var(--v-progress-left) + var(--v-progress-item-height-width) / 2 - var(--v-progress-line-width) / 2);
-    border-left: var(--v-progress-line-width) solid #ccc;
-  }
-  
-  /* Completed step styles */
-  .v-progress-item.completed:after {
-    border-color: #2C761BA3;
-  }
-  
-  .v-progress-item.completed:before {
-    content: "✔";
-    font-size: 11px;
-    text-align: center;
-    color: white;
-    background: #2C761BA3;
-    height: calc(var(--v-progress-item-height-width) + 4px);
-    width: calc(var(--v-progress-item-height-width) + 4px);
-    line-height: calc(var(--v-progress-item-height-width) + 4px);
-    left: calc(0px - var(--v-progress-left) - 2px);
-    top: calc(0px - 2px);
-  }
-  
-  /* In-progress step styles */
-  .v-progress-item.inprogress:before {
-    background-color: white;
-    outline: calc(var(--v-progress-item-height-width) / 2) solid #506a38;
-    top: calc(0px - var(--v-progress-item-height-width) / 2);
-  }
-  
-  /* Adding spacing and alignment */
-  .v-progress-item.completed,
-  .v-progress-item.inprogress {
-    padding-bottom: var(--v-progress-gap);
-  }
+}
 
+.v-progress-item:last-child {
+margin-bottom: 0;
+}
+
+.v-progress-item:last-child:after {
+border-left: 0;
+}
+
+/* Dot before each step */
+.v-progress-item:before {
+content: "";
+display: inline-block;
+position: absolute;
+width: var(--v-progress-item-height-width);
+height: var(--v-progress-item-height-width);
+left: calc(0px - var(--v-progress-left));
+border-radius: 50%;
+background-color: #ccc;
+}
+
+/* Line connecting steps */
+.v-progress-item:after {
+content: "";
+display: inline-block;
+position: absolute;
+height: calc(var(--v-progress-line-height) - var(--v-progress-gap));
+top: calc(var(--v-progress-item-height-width) + var(--v-progress-gap) / 2);
+left: calc(0px - var(--v-progress-left) + var(--v-progress-item-height-width) / 2 - var(--v-progress-line-width) / 2);
+border-left: var(--v-progress-line-width) solid #ccc;
+}
+
+/* Completed step styles */
+.v-progress-item.completed:after {
+border-color: #2C761BA3;
+}
+
+.v-progress-item.completed:before {
+content: "✔";
+font-size: 11px;
+text-align: center;
+color: white;
+background: #2C761BA3;
+height: calc(var(--v-progress-item-height-width) + 4px);
+width: calc(var(--v-progress-item-height-width) + 4px);
+line-height: calc(var(--v-progress-item-height-width) + 4px);
+left: calc(0px - var(--v-progress-left) - 2px);
+top: calc(0px - 2px);
+}
+
+/* In-progress step styles */
+.v-progress-item.inprogress:before {
+background-color: white;
+outline: calc(var(--v-progress-item-height-width) / 2) solid #506a38;
+top: calc(0px - var(--v-progress-item-height-width) / 2);
+}
+
+.v-progress-item.inprogress:after {
+    border-color: #2C761BA3;
+}
+
+/* Adding spacing and alignment */
+.v-progress-item.completed,
+.v-progress-item.inprogress {
+padding-bottom: var(--v-progress-gap);
+}
+
+.progress-container {
+    display: flex;
+    align-items: flex-start; /* Align the items to the top */
+    position: relative;
+    margin-right: 10px; /* Space between progress bar and ladder */
+}
+
+/* Ladder Image */
+.ladder-image {
+    position: relative;
+    height: 500px;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+/* Koala Image */
+.progress-koala-image {
+    position: absolute;
+    top: 0; /* Start from the bottom of the ladder */
+    left: 50%; /* Position koala in the middle */
+    transform: translateX(-50%); /* Center koala horizontally */
+    width: 50px; /* Adjust size of the koala */
+    transition: top 1s ease-in-out; 
+}
+
+/* Adjust koala position based on progress */
+.v-progress-item.completed:nth-child(1) ~ .progress-koala-image {
+    top: 10%;  /* Climb to 10% of the ladder height */
+}
+
+.v-progress-item.completed:nth-child(2) ~ .progress-koala-image {
+    top: 25%;  /* Climb to 25% */
+}
+
+.v-progress-item.completed:nth-child(3) ~ .progress-koala-image {
+    top: 50%;  /* Climb to 50% */
+}
+
+.v-progress-item.completed:nth-child(4) ~ .progress-koala-image {
+    top: 75%;  /* Climb to 75% */
+}
+
+.v-progress-item.completed:nth-child(5) ~ .progress-koala-image {
+    top: 90%;  /* Climb to 90% */
+}
 
 /*******************************************************************/
 
@@ -444,8 +498,6 @@ p1-button[type="submit"]:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
-
-
 
 /*Resume Advisor*/
 /* Resume Advisor */
