@@ -1,11 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
     <div class="container">
 
@@ -22,30 +24,37 @@
                 </ul>
                 <hr>
                 <ul>
-                    <li><a href="{% url 'add_job' %}">Add Job Listing</a></li>
-                    <li><a href="{% url 'edit_job' %}">Edit Job Listing</a></li>
-                    <li><a href="{% url 'individual_job' %}">Individual Job Listing</a></li>
+                    <li><a href="{% url 'add_job_listing' %}">Add Job Listing</a></li>
+                    <li><a href="{% url 'edit_job_listing' job_id=1 %}">Edit Job Listing</a></li>
+                    <li><a href="{% url 'individual_job_listing' job_id=1 %}">Individual Job Listing</a></li>
                 </ul>
             </nav>
         </aside>
 
         <!-- Profile Form Section -->
         <main class="resume_advisor">
-            <div class="container">
-                <h1>Resume Advisor</h1>
-                <div class="form-container">
-                    <div class="input-box">
+            <div class="ra-container">
+                <div class="ra-header">
+                    <h1>Resume Advisor</h1>
+                </div>
+                <div class="ra-form-container">
+                    <div class="ra-resume-container">
                         <h2>Insert Resume</h2>
-                        <div class="upload-box">
-                            <img src="image-icon-placeholder.png" alt="Upload Icon">
+                        <div class="ra-upload-container">
+                            <input class="ra-select-image" type="file">
                         </div>
                     </div>
-                    <div class="input-box">
-                        <h2>Paste Job Description</h2>
-                        <textarea placeholder="Paste Job Description"></textarea>
+                    <div class="ra-job-container">
+                        <h2>Job Description</h2>
+                        <div class="ra-paste-container">
+
+                            <textarea placeholder="Paste Job Description"></textarea>
+                        </div>
                     </div>
                 </div>
-                <button class="generate-button">Generate</button>
+                <div class="ra-button-container">
+                    <p1-button type="submit">Generate</p1-button>
+                </div>
             </div>
         </main>
 
@@ -57,4 +66,5 @@
     </footer>
 
 </body>
+
 </html>
