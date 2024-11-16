@@ -346,15 +346,48 @@ p1-button[type="submit"]:hover {
 
 /*Login page */
 
+.introduction {
+    width: 100%; 
+    padding: 40px 20px; 
+    text-align: center; 
+    box-sizing: border-box; 
+    margin: 0; 
+}
+
+.introduction header p {
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
 .login-container {
     width: 100%;
     max-width: 400px;
+    margin: 50px auto; 
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.loginForm-group {
+    width: 100%;
+    max-width: 350px;
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+label {
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: bold;
+}
+
 
 
 
