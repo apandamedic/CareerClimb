@@ -469,7 +469,7 @@ padding-bottom: var(--v-progress-gap);
     top: 57%;
     left: 65%;
     transform: translateX(-50%); /* Center koala horizontally */
-    transition: top 1s ease-in-out; 
+    transition: top 5s ease-in-out; 
 }
 
 /*******************************************************************/
