@@ -9,24 +9,43 @@
 </head>
 <body>
     
-    <header>
-       <h1>Career Climb Sign Up</h1>
-    </header>
+    <div class = 'introduction'>
+        <header class = 'login-header'>
+                <div class="logo-login">
+                    <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
+                </div>
+            <h1>Career Climb Sign Up</h1>
+        </header>
+    </div>
 
    
     <main>
-        <form action = "/register" method = "POST">
-            <label for = "firstName">First Name</label>
-            <input type = "text" id="first name" name = "First Name" required>
-            <label for="lastName">Last Name</label>
-            <input type="lastName" id="lastName" name="Last Name" required>
-            <label for = "email">Email</label>
-            <input type = "text" id="email" name = "email" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <label for="password">Re-Type Password</label>
-            <input type="password" id="retypePassword" name="retypePassword" required>
-            <button type="submit">Register</button>
+        <div class="login-container">
+            <form class="login-form" action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class = "login-form-group">
+                    <label for = "login-firstName">First Name</label>
+                    <input type = "text" id = "login-firstName" name = "login-firstName" placeholder = "Enter First Name" required>
+                </div>
+                <div class = "login-form-group">
+                    <label for = "login-lastName">Last Name</label>
+                    <input type = "text" id = "login-lastName" name = "login-lastName" placeholder = "Enter Last Name" required>
+                </div>
+                <div class="login-form-group">
+                    <label for="login-email">Email</label>
+                    <input type="text" id="login-email" name="login-email" placeholder="Enter Email" required>
+                </div>
+                <div class="login-form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="login-password" placeholder="Enter Password" required>
+                </div>
+                <div class="login-form-group">
+                    <label for="login-RePassword">Re-Enter Password</label>
+                    <input type="password" id="login-RePassword" name="login-RePassword" placeholder="Re-Enter Password" required>
+                </div>
+                <button type="submit" class="login-button">Sign Up</button>
+            </form>
+        </div>
         </form>
         
     </main>

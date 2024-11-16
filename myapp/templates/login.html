@@ -9,29 +9,41 @@
 </head>
 <body>
 <div class = 'introduction'>
-    <header>
+    <header class = 'login-header'>
+            <div class="logo-login">
+                <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
+            </div>
         <h1>Welcome to CareerClimb!</h1>
-        <p>Take your Career to new heights with CareerClimb! We provide expert resume advice and job application tracking that helps you
-            stay organized as you apply. Watch our friendly koala mascot climb and higher with each milestone, motivating you as you move closer
-            to landing your dream job. From resume tips to visual progress tracking, Career Climb is your go-to tool for success.
-        </p>
     </header>
 </div>
 
     
 <main>
-    <div class = 'login-container'>
-        <form class = "login-form" action = "/login" method = "POST">
-            <h2>Login</h2>
-            <label for = "email">Email:</label>
-            <input type = "text" id="email" name = "email" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
-            <p><a href="/forgot-password">Forgot Password?</a></p>
-            <p><a href="register.html">New User? Register Here</a></p>
+    <div class = 'intro-para'>
+        <p>
+            Take your Career to new heights with CareerClimb! We provide expert resume advice and job application tracking that helps you
+            stay organized as you apply. Watch our friendly koala mascot climb and higher with each milestone, motivating you as you move closer
+            to landing your dream job. From resume tips to visual progress tracking, Career Climb is your go-to tool for success.
+        </p>
+    </div>
+    <div class="login-container">
+        <form class="login-form" action="{% url 'profile' %}" method="POST">
+            {% csrf_token %}
+            <div class="login-form-group">
+                <label for="login-email">Email</label>
+                <input type="text" id="login-email" name="login-email" placeholder="Enter Email" required>
+            </div>
+            <div class="login-form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="login-password" placeholder="Enter Password" required>
+            </div>
+            <button type="submit" class="login-button">Sign In</button>
+            <div class="login-links">
+                <a href="/forgot-password" class="login-forgot-password-link">Forgot password?</a>
+                <a href="{% url 'register' %}" class="login-register-link">New User?<br>Make an Account</a>
+            </div>
         </form>
-    </div>       
+    </div>
 </main>
 
     
