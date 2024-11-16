@@ -466,32 +466,10 @@ padding-bottom: var(--v-progress-gap);
 /* Koala Image */
 .progress-koala-image {
     position: absolute;
-    top: 0; /* Start from the bottom of the ladder */
-    left: 50%; /* Position koala in the middle */
+    top: 57%;
+    left: 65%;
     transform: translateX(-50%); /* Center koala horizontally */
-    width: 50px; /* Adjust size of the koala */
     transition: top 1s ease-in-out; 
-}
-
-/* Adjust koala position based on progress */
-.v-progress-item.completed:nth-child(1) ~ .progress-koala-image {
-    top: 10%;  /* Climb to 10% of the ladder height */
-}
-
-.v-progress-item.completed:nth-child(2) ~ .progress-koala-image {
-    top: 25%;  /* Climb to 25% */
-}
-
-.v-progress-item.completed:nth-child(3) ~ .progress-koala-image {
-    top: 50%;  /* Climb to 50% */
-}
-
-.v-progress-item.completed:nth-child(4) ~ .progress-koala-image {
-    top: 75%;  /* Climb to 75% */
-}
-
-.v-progress-item.completed:nth-child(5) ~ .progress-koala-image {
-    top: 90%;  /* Climb to 90% */
 }
 
 /*******************************************************************/
