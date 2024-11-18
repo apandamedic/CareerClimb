@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-$in%4rmbj%*!k3i%60u44e!sl30=p3)l&wgri9)c&ed65q$$2-"
+OPENAI_API_KEY = "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"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -55,7 +56,7 @@ ROOT_URLCONF = "careerclimb.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR/ "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -124,3 +125,20 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# implementation of logging, just so i can catch errors more effectively
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
+
