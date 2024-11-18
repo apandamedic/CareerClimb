@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import JobListing
-
+from .models import JobListing,JobDescription, Resume, InterviewQuestion
+from .utils import generate_interview_questions
+import chardet
+from openai import OpenAI
 def profile(request):
     return render(request, 'profile.html')
 
@@ -94,3 +96,28 @@ def login(request):
 #Register view
 def register(request):
     return render(request, 'register.html')
+
+# the interview prep view
+def interview_prep_view(request):
+    if request.method == 'POST':
+        job_description = request.POST.get('job_description')
+
+        if not job_description:
+            return render(request, 'error.html', {'message': "Please provide a job description to generate questions."})
+
+        # Generate questions and format them
+        raw_questions = generate_interview_questions(job_description)
+        questions = format_questions(raw_questions)
+
+        return render(request, 'interview_questions.html', {'questions': questions})
+
+    return render(request, 'interview_prep_form.html')
+
+
+
+def format_questions(response_text):
+    """
+    Format the response text into a list of questions for display.
+    """
+    questions = [{"category": "General", "question": line.strip()} for line in response_text.split("\n") if line.strip()]
+    return questions

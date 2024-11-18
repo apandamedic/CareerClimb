@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Interview Prep</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Sidebar Section -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img class="logo" src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
+                <h1>Career Climb</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'interview_prep_form' %}">Interview Prep</a></li>
+                </ul>
+                <hr>
+                <ul>
+                    <li><a href="{% url 'add_job_listing' %}">Add Job Listing</a></li>
+                    <li><a href="{% url 'edit_job_listing' job_id=1 %}">Edit Job Listing</a></li>
+                    <li><a href="{% url 'individual_job_listing' job_id=1 %}">Individual Job Listing</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Interview Prep Form Section -->
+        <main class="interview_prep">
+            <div class="ip-container">
+                <div class="ip-header">
+                    <h1>Interview Prep</h1>
+                </div>
+                <form action="{% url 'interview_prep_form' %}" method="post">
+                    {% csrf_token %}
+                    <div class="ip-form-container">
+                        <div class="ip-job-container">
+                            <h2>Paste Job Description</h2>
+                            <div class="ip-paste-container">
+                                <textarea required name="job_description" placeholder="Paste Job Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ip-button-container">
+                        <button type="submit" class="ip-generate-button">Generate Questions</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; <span id="2024"

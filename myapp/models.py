@@ -21,3 +21,22 @@ class JobListing(models.Model):
 
     def __str__(self):
         return self.job_title
+
+
+class JobDescription(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+
+class Resume(models.Model):
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    content = models.TextField()
+
+class InterviewQuestion(models.Model):
+    question = models.TextField()
+    category = models.CharField(max_length=50, choices=[
+        ('behavioral', 'Behavioral'),
+        ('technical', 'Technical'),
+        ('general', 'General')
+    ])
+    job_description = models.ForeignKey(JobDescription, on_delete=models.CASCADE, null=True, blank=True)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, null=True, blank=True)
