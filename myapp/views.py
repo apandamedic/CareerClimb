@@ -85,10 +85,6 @@ def individual_job_listing(request, job_id):
 
     return render(request, 'individualJobListing.html', {'job': job})
 
-# Resume advisor view
-def resume_advisor(request):
-    return render(request, 'ResumeAdvisor.html')
-
 #Login view
 def login(request):
     return render(request, 'login.html')
