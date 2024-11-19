@@ -4,8 +4,24 @@ from .models import JobListing,JobDescription, Resume, InterviewQuestion
 from .utils import generate_interview_questions
 import chardet
 from openai import OpenAI
+from .forms import UserProfileForm
+from .models import UserProfile
+
 def profile(request):
-    return render(request, 'profile.html')
+   # Get the existing profile or create a new one for demonstration
+   profile = UserProfile.objects.first()  # Or filter by user if there's a login system
+
+
+   if request.method == 'POST':
+       form = UserProfileForm(request.POST, request.FILES, instance=profile)
+       if form.is_valid():
+           form.save()
+           return redirect('profile')  # Redirect to the profile page after saving
+   else:
+       form = UserProfileForm(instance=profile)
+
+
+   return render(request, 'profile.html', {'form': form, 'profile': profile})
 
 def room(request):
     return HttpResponse('Room')
@@ -117,3 +133,10 @@ def format_questions(response_text):
     """
     questions = [{"category": "General", "question": line.strip()} for line in response_text.split("\n") if line.strip()]
     return questions
+
+
+
+#home page view
+def home(request):
+   form = UserProfileForm()  # Instantiate your form
+   return render(request, 'home.html', {'form': form})
