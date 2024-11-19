@@ -1,11 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // const progressItems = document.querySelectorAll('.v-progress-item'); // All progress items
-    // const koala = document.querySelector('.progress-koala-image img'); // Koala image
-    // const ladderHeight = document.querySelector('.ladder-image img').clientHeight; // Ladder height
-    // const totalItems = progressItems.length; // Total progress items
     const currentJobStatus = document.querySelector('#status').textContent.trim();
-    const progressItems = document.querySelectorAll('.v-progress-item'); // All progress items
-    const koala = document.querySelector('.progress-koala-image'); // Koala image
+    const progressItems = document.querySelectorAll('.v-progress-item'); // all progress items
+    const koala = document.querySelector('.progress-koala-image'); 
     
     const vProgressMap = new Map([
         ['Offer', 0],
@@ -25,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }    
     }
+
     // Calculate the koala's position based on completed items
     function updateKoalaPosition() {
         switch(currentJobStatus) {
@@ -53,8 +50,5 @@ document.addEventListener('DOMContentLoaded', function () {
     updateVProgress();
     
     setTimeout(() => updateKoalaPosition(), 300);
-    // Initialize koala position
-
-
 
 });
