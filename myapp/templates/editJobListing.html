@@ -8,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <script src="{% static 'js/confirmDelete.js' %}" defer></script>
     <title>Edit Job Listing</title>
 </head>
 
@@ -93,7 +94,7 @@
                         </div>
                         <div class="saveJob-form-group">
                             <label for="deadline" class="saveJob-label">Deadline</label>
-                            <input type="date" id="deadline" name="deadline" class="saveJob-input" value="{{ job.deadline }}" required>
+                            <input type="date" id="deadline" name="deadline" class="saveJob-input" value="{{ job.deadline|date:'Y-m-d' }}" required>
                         </div>
                     </div>
 
@@ -110,12 +111,29 @@
                     <!-- Form buttons -->
                     <div class="saveJob-form-actions">
                         <!-- Delete button -->
-                        <form method="POST" action="{% url 'delete_job_listing' job.id %}">
+                        <!-- <form method="POST" action="{% url 'delete_job_listing' job.id %}">
                             {% csrf_token %}
                             <button type="submit" class="saveJob-delete-btn">
                                 <i class="fas fa-trash-alt"></i> Delete
                             </button>
-                        </form>
+                        </form> -->
+                        <button type="button" class="saveJob-delete-btn" id="delete-btn-{{ job.id }}">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                        
+                        <!-- Confirmation Modal -->
+                        <div id="confirmDeleteModal-{{ job.id }}" class="modal">
+                            <div class="modal-content">
+                                <h2>Are you sure you want to delete this job listing?</h2>
+                                <p>This action cannot be undone.</p>
+                                <div class="modal-actions">
+                                    <button type="button" class="cancel-delete-btn" id="cancel-delete-{{ job.id }}">Cancel</button>
+                                    <a href="{% url 'delete_job_listing' job.id %}" class="confirm-delete-btn">
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Save and Cancel buttons -->
                         <div class="saveJob-right-buttons">

@@ -4,6 +4,8 @@ from .models import JobListing,JobDescription, Resume, InterviewQuestion
 from .utils import generate_interview_questions
 import chardet
 from openai import OpenAI
+from datetime import datetime
+
 def profile(request):
     return render(request, 'profile.html')
 
@@ -25,8 +27,11 @@ def add_job_listing(request):
         contacts = request.POST.get('contacts')
         notes = request.POST.get('notes')
 
-    # Create a new job entry in the database
-        JobListing.objects.create(
+        if deadline:
+            deadline = datetime.strptime(deadline, '%Y-%m-%d').date()
+
+        # Create a new job entry in the database
+        job_listing = JobListing.objects.create(
             company_name=company_name,
             job_title=job_title,
             post_url=post_url,
@@ -40,7 +45,7 @@ def add_job_listing(request):
         )
 
         # *********************** NEEDS TO BE EDITED ****************
-        return redirect('profile')
+        return redirect('individual_job_listing', job_id=job_listing.id)
 
     return render(request, 'addJobListing.html')
 
@@ -56,7 +61,12 @@ def edit_job_listing(request, job_id):
         job.work_style = request.POST.get('work-style')
         job.salary = request.POST.get('salary')
         job.status = request.POST.get('status')
-        job.deadline = request.POST.get('deadline')
+
+        # Convert the string date into a datetime.date object
+        deadline_str = request.POST.get('deadline')
+        if deadline_str:
+            job.deadline = datetime.strptime(deadline_str, '%Y-%m-%d').date()
+
         job.contacts = request.POST.get('contacts')
         job.notes = request.POST.get('notes')
         job.save()
@@ -67,16 +77,12 @@ def edit_job_listing(request, job_id):
 # Delete job listing view
 def delete_job_listing(request, job_id):
     job = get_object_or_404(JobListing, id=job_id)
-    
-    # Handle the deletion only if it's a POST request
-    if request.method == 'POST':
-        job.delete()
-        # *********************** NEEDS TO BE EDITED ****************
-        return redirect('DASHBOARD')  # Redirect to the job list or any other page
-    
-    # If not a POST request, return a confirmation page or the current page
+    # Delete the job object
+    job.delete()
     # *********************** NEEDS TO BE EDITED ****************
-    return render('DASHBOARD')
+    # Redirect to dashboard after deletion
+    return redirect('profile')
+    
 
 # Individual job listing view
 def individual_job_listing(request, job_id):
