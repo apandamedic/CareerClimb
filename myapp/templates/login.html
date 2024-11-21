@@ -39,16 +39,15 @@
             </div>
             <button type="submit" class="login-button">Sign In</button>
             <div class="login-links">
-                <a href="/forgot-password" class="login-forgot-password-link">Forgot password?</a>
+                <a href="{% url 'forgot-password' %}" class="login-forgot-password-link">Forgot password?</a>
                 <a href="{% url 'register' %}" class="login-register-link">New User?<br>Make an Account</a>
             </div>
         </form>
     </div>
 </main>
 
-    
-    <footer>
-        
-    </footer>
+<footer class="footer">
+    <p>&copy; <span id="year">2024</span> CareerClimb. All rights reserved.</p>
+</footer>
 </body>
 </html>

@@ -6,8 +6,10 @@ import chardet
 from openai import OpenAI
 from .forms import UserProfileForm
 from .models import UserProfile
-
 from datetime import datetime
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout
 
 def profile(request):
    # Get the existing profile or create a new one for demonstration
@@ -109,11 +111,59 @@ def individual_job_listing(request, job_id):
 
 #Login view
 def login(request):
+    if request.method == 'POST':
+        email = request.POST['login-email']
+        password = request.POST['login-password']
+
+        # Authenticate the user
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Login successful')
+            return redirect('profile')  # Redirect to the 'profile' view or home page
+        else:
+            messages.error(request, 'Invalid email or password')
+            return redirect('login')  # Redirect back to the login page if login fails
     return render(request, 'login.html')
+
+#Logout
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'You have been logged out.')
+    return redirect('login')  # Redirect to the login page or homepage
 
 #Register view
 def register(request):
+    if request.method == 'POST':
+        first_name = request.POST['login-firstName']
+        last_name = request.POST['login-lastName']
+        email = request.POST['login-email']
+        password1 = request.POST['login-password']
+        password2 = request.POST['login-RePassword']
+
+        if password1 != password2:
+            messages.error(request, 'Passwords do not match')
+            return redirect('register')
+
+        if User.objects.filter(username=email).exists():
+            messages.error(request, 'Email already registered as username')
+            return redirect('register')
+
+        # Create the user
+        user = User.objects.create_user(username=email, email=email, password=password1)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+
+        # Automatically log in the user
+        login(request, user)
+        messages.success(request, 'Account created successfully')
+        return redirect('home')  # Redirect to your homepage or dashboard
     return render(request, 'register.html')
+
+#Forgot Password View
+def forgotPassword(request):
+    return render(request, 'forgotPassword.html')
 
 # the interview prep view
 def interview_prep_view(request):
