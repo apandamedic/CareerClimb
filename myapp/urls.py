@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from . import views
 
 urlpatterns = [
-    path('', lambda request: redirect('profile/')), 
+    path('', views.home, name='home'),
     path('profile/', views.profile, name='profile'),  
     path('add/', views.add_job_listing, name='add_job_listing'),
     path('edit/<int:job_id>/', views.edit_job_listing, name='edit_job_listing'),
@@ -12,5 +12,6 @@ urlpatterns = [
     path('interview_prep_form/', views.interview_prep_view, name='interview_prep_form'),
     path('login/', views.login, name = 'login'),
     path('register/', views.register, name = 'register'),
+    path('home/', views.home, name='home'),
 ]
 git 

@@ -1,11 +1,20 @@
 from openai import OpenAI
 from django.conf import settings
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def generate_interview_questions(job_description):
     """
     Generate interview questions based on the given job description using OpenAI's latest interface.
     """
-    client = OpenAI(api_key=settings.OPENAI_API_KEY)  # Pass the API key explicitly
+    api_key = os.getenv("OPENAI_API_KEY")  # Fetch the API key from the environment
+    if not api_key:
+        raise ValueError("API key not found. Make sure it is defined in your .env file.")
+
+    client = OpenAI(api_key=api_key)  # Pass the API key explicitly
     try:
         response = client.chat.completions.create(
             model="gpt-4o",
