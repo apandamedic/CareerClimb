@@ -60,7 +60,6 @@ def add_job_listing(request):
             notes=notes
         )
 
-        # *********************** NEEDS TO BE EDITED ****************
         return redirect('individual_job_listing', job_id=job_listing.id)
 
     return render(request, 'addJobListing.html')
@@ -95,9 +94,9 @@ def delete_job_listing(request, job_id):
     job = get_object_or_404(JobListing, id=job_id)
     # Delete the job object
     job.delete()
-    # *********************** NEEDS TO BE EDITED ****************
+
     # Redirect to dashboard after deletion
-    return redirect('profile')
+    return redirect('home')
     
 
 # Individual job listing view

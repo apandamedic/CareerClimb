@@ -107,19 +107,19 @@ p {
 .profile {
     flex: 1;
     padding: 20px;
-    margin-left: 20px;
+    min-height: 100%;
 }
 
-.profile h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-profile-form {
+.profile-form {
     background-color: #f7e4d7;
-    padding: 7px;
-    border: 1px solid #b38c6b;
+    box-sizing: border-box;
+    width: 96%;
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid #633d34;
     border-radius: 8px;
+    overflow: auto;
+    height: 610px;
 }
 
 .form-group {
@@ -157,19 +157,17 @@ profile-form {
     text-align: center;
 }
 
-p1-button[type="submit"] {
-    background-color: #68824b;
-    color: #fff;
+.profile-submit-button {
+    padding: 10px 20px; 
     border: none;
-    padding: 10px 20px;
-    font-size: 1em;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #2C761BA3;
+    color: #f5e2d6;
     border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-p1-button[type="submit"]:hover {
-    background-color: #506a38;
 }
 
 
@@ -185,9 +183,9 @@ p1-button[type="submit"]:hover {
 
  /* Container styling with a brown border */
 .saveJob-container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
+    box-sizing: border-box;
+    width: 96%;
+    margin: 20px;
     padding: 20px;
     border: 2px solid #633d34; /* Brown border */
     border-radius: 8px;
@@ -251,6 +249,7 @@ p1-button[type="submit"]:hover {
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    border-radius: 5px;
 }
 
 .saveJob-submit-btn {
