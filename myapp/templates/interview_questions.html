@@ -34,21 +34,32 @@
         </aside>
 
         <!-- Interview questions Section -->
-        <ul>
-            {% if questions %}
-                {% for question in questions %}
-                    <li>{{ question.question }}</li>
-                {% endfor %}
-            {% else %}
-                <li>No questions generated. Please try again.</li>
-            {% endif %}
-        </ul>
         
+        <div class="iq-container">
+            <h1>Mock Interview Questions</h1>
+            <div class="iq-questions">
+                <ul>
+                    {% if questions %}
+                        {% for question in questions %}
+                            <li>{{ question.question }}</li>
+                        {% endfor %}
+                    {% else %}
+                        <li>No questions generated. Please try again.</li>
+                    {% endif %}
+                </ul>
+            </div> 
+            <a href="{% url 'interview_prep_form' %}">
+                <button type="submit" class="ip-generate-button">Close</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
     <!-- Footer Section -->
     <footer class="footer">
         <p>&copy; <span id="2024">2024</span> CareerClimb. All rights reserved.</p>
     </footer>
 
-</body>
+
 
 </html>

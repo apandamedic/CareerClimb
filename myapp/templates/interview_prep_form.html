@@ -33,30 +33,39 @@
             </nav>
         </aside>
 
-        <!-- Interview Prep Form Section -->
-        <main class="interview_prep">
-            <div class="ip-container">
+       
+        <div class="ip-container">
+             <h1>Interview Prep</h1>
+
+         <!-- Interview Prep Form Section -->
+            <div class="ip-content">
                 <div class="ip-header">
-                    <h1>Interview Prep</h1>
+                        
                 </div>
                 <form action="{% url 'interview_prep_form' %}" method="post">
                     {% csrf_token %}
                     <div class="ip-form-container">
                         <div class="ip-job-container">
                             <h2>Paste Job Description</h2>
+                            <p> Quesions will be generated based of of this and you resume.</p>
                             <div class="ip-paste-container">
-                                <textarea required name="job_description" placeholder="Paste Job Description"></textarea>
+                                <textarea class="ip-textarea" required name="job_description" placeholder="Paste Job Description"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="ip-button-container">
-                        <button type="submit" class="ip-generate-button">Generate Questions</button>
+                            <button type="submit" class="ip-generate-button">Generate Questions</button>
                     </div>
                 </form>
             </div>
-        </main>
+        </div>
     </div>
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; <span id="2024"
+        <p>&copy; <span id="2024"></span> Career Climb. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
