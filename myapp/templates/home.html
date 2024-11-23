@@ -1,0 +1,115 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>CareerClimb Home</title>
+   <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+   <div class="container">
+
+
+       <!-- Sidebar Section -->
+       <aside class="sidebar">
+           <div class="logo">
+               <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
+               <h1>Career Climb</h1>
+           </div>
+           <nav class="nav">
+               <ul>
+                   <li><a href="{% url 'home' %}">Home</a></li>
+                   <li><a href="{% url 'profile' %}">Profile</a></li>
+                   <li><a href="{% url 'interview_prep_form' %}">Interview Prep</a></li>
+               </ul>
+               <hr>
+               <ul>
+                   <li><a href="{% url 'add_job_listing' %}">Add Job Listing</a></li>
+                   <li><a href="{% url 'edit_job_listing' job_id=1 %}">Edit Job Listing</a></li>
+                   <li><a href="{% url 'individual_job_listing' job_id=1 %}">Individual Job Listing</a></li>
+               </ul>
+           </nav>
+       </aside>
+
+
+       <!-- Main Dashboard Section -->
+       <main class="dashboard">
+           <!-- Wishlist Section -->
+           <div class="status-card wishlist">
+               <h3>Wishlist</h3>
+               <p>2 Jobs</p>
+               <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+               <div class="job-list">
+                   <div class="job-item">
+                       <p>Job Title 1</p>
+                       <span>Company</span>
+                   </div>
+                   <div class="job-item">
+                       <p>Job Title 2</p>
+                       <span>Company</span>
+                   </div>
+               </div>
+           </div>
+
+
+           <!-- Applied Section -->
+           <div class="status-card applied">
+               <h3>Applied</h3>
+               <p>0 Jobs</p>
+               <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+               <div class="job-list">
+                   <div class="job-item">
+                       <p>Job Title</p>
+                       <span>Company</span>
+                   </div>
+               </div>
+           </div>
+
+
+           <!-- Offer Section -->
+           <div class="status-card offer">
+               <h3>Offer</h3>
+               <p>0 Jobs</p>
+               <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+               <div class="job-list">
+                   <div class="job-item">
+                       <p>Job Title</p>
+                       <span>Company</span>
+                   </div>
+               </div>
+           </div>
+
+
+           <!-- Favorites Section -->
+           <div class="status-card favorites">
+               <h3>Favorites</h3>
+               <p>3 Jobs</p>
+               <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+               <div class="job-list">
+                   <div class="job-item">
+                       <p>Job Title</p>
+                       <span>Company</span>
+                   </div>
+                   <div class="job-item">
+                       <p>Job Title</p>
+                       <span>Company</span>
+                   </div>
+                   <div class="job-item">
+                       <p>Job Title</p>
+                       <span>Company</span>
+                   </div>
+               </div>
+           </div>
+       </main>
+   </div>
+
+
+   <!-- Footer Section -->
+   <footer class="footer">
+       <p>&copy; <span id="2024">2024</span> CareerClimb. All rights reserved.</p>
+   </footer>
+</body>
+</html>

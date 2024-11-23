@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <script src="{% static 'js/progress.js' %}" defer></script>
     <title>Individual Job Listing Details</title>
 </head>
 
@@ -20,8 +20,9 @@
             </div>
             <nav class="nav">
                 <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'resume_advisor' %}">Resume Advisor</a></li>
+                    <li><a href="{% url 'interview_prep_form' %}">Interview Prep</a></li>
                 </ul>
                 <hr>
                 <ul>
@@ -81,10 +82,11 @@
                         <ul>
                             <li class="v-progress-item">Offer</li>
                             <li class="v-progress-item">Follow Up</li>
-                            <li class="v-progress-item inprogress">Interview</li>
-                            <li class="v-progress-item completed">Applied</li>
-                            <li class="v-progress-item completed">Wishlist</li>
+                            <li class="v-progress-item">Interview</li>
+                            <li class="v-progress-item">Applied</li>
+                            <li class="v-progress-item">Wishlist</li>
                         </ul>
+                        
                         
                     </div>
 

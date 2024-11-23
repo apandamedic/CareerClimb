@@ -1,80 +1,98 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareerClimb Profile</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>CareerClimb Profile</title>
+   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="container">
+   <div class="container">
 
-        <!-- Sidebar Section -->
-        <aside class="sidebar">
-            <div class="logo">
-                <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
-                <h1>Career Climb</h1>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'resume_advisor' %}">Resume Advisor</a></li>
-                </ul>
-                <hr>
-                <ul>
-                    <li><a href="{% url 'add_job_listing' %}">Add Job Listing</a></li>
-                    <li><a href="{% url 'edit_job_listing' job_id=1 %}">Edit Job Listing</a></li>
-                    <li><a href="{% url 'individual_job_listing' job_id=1 %}">Individual Job Listing</a></li>
-                </ul>
-            </nav>
-        </aside>
 
-        <!-- Profile Form Section -->
-        <main class="profile">
-            <h1>Profile</h1>
-            <form>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" placeholder="Input Name">
+       <!-- Sidebar Section -->
+       <aside class="sidebar">
+           <div class="logo">
+               <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
+               <h1>Career Climb</h1>
+           </div>
+           <nav class="nav">
+               <ul>
+                   <li><a href="{% url 'home' %}">Home</a></li>
+                   <li><a href="{% url 'profile' %}">Profile</a></li>
+                   <li><a href="{% url 'interview_prep_form' %}">Interview Prep</a></li>
+               </ul>
+               <hr>
+               <ul>
+                   <li><a href="{% url 'add_job_listing' %}">Add Job Listing</a></li>
+                   <li><a href="{% url 'edit_job_listing' job_id=1 %}">Edit Job Listing</a></li>
+                   <li><a href="{% url 'individual_job_listing' job_id=1 %}">Individual Job Listing</a></li>
+               </ul>
+           </nav>
+       </aside>
+
+
+       <!-- Profile Form Section -->
+       <main class="profile">
+           <h1>Profile</h1>
+           <form method="post" enctype="multipart/form-data" class="profile-form">
+               {% csrf_token %}
+               <div class="form-group">
+                   <label for="name">Name:</label>
+                   <input type="text" id="name" name="name" placeholder="Input Name">
+               </div>
+               <div class="form-group">
                     <label for="age">Age:</label>
-                    <input type="number" id="age" placeholder="Input Age">
-                </div>
-                <div class="form-group">
-                    <label for="goal">Goal:</label>
-                    <textarea id="goal" placeholder="Write Goal"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="bio">Bio:</label>
-                    <textarea id="bio" placeholder="Write Bio"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="education">Education:</label>
-                    <textarea id="education" placeholder="Write education level and history"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="additional-info">Additional Information:</label>
-                    <textarea id="additional-info" placeholder="Additional Information"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="resume">Resume/CV:</label>
-                    <div class="file-upload">
-                        <input type="file" id="resume">
-                        <span>Upload</span>
-                    </div>
-                </div>
-                <p1-button type="submit">Edit</p1-button>
-            </form>
-        </main>
+                    <input type="number" id="age" name="age" placeholder="Input Age">
+               </div>
+               <div class="form-group">
+                   <label for="goal">Goal:</label>
+                   <textarea id="goal" name="goal" placeholder="Write Goal"></textarea>
+               </div>
+               <div class="form-group">
+                   <label for="bio">Bio:</label>
+                   <textarea id="bio" name="bio" placeholder="Write Bio"></textarea>
+               </div>
+               <div class="form-group">
+                   <label for="education">Education:</label>
+                   <textarea id="education" name="education" placeholder="Write education level and history"></textarea>
+               </div>
+               <div class="form-group">
+                   <label for="additional-info">Additional Information:</label>
+                   <textarea id="additional-info" name="additional_info" placeholder="Additional Information"></textarea>
+               </div>
+               <div class="form-group">
+                   <label for="resume">Resume/CV:</label>
+                   <div class="file-upload" onclick="document.getElementById('resume').click();">
+                       <input type="file" id="resume" name="resume" style="display: none;" onchange="displayFileName(this)">
+                       <span id="upload-text">Upload</span>
+                   </div>
+               </div>
+               <button type="submit" class="profile-submit-button">Edit</button>
+           </form>
+       </main>
 
-    </div>
 
-    <!-- Footer Section -->
-    <footer class="footer">
-        <p>&copy; <span id="2024">2024</span> CareerClimb. All rights reserved.</p>
-    </footer>
+   </div>
 
+
+   <!-- Footer Section -->
+   <footer class="footer">
+       <p>&copy; <span id="year">2024</span> CareerClimb. All rights reserved.</p>
+   </footer>
+
+
+   <!-- JavaScript to Display File Name After Upload -->
+   <script>
+       function displayFileName(input) {
+           const fileName = input.files[0] ? input.files[0].name : "Upload";
+           document.getElementById('upload-text').textContent = fileName;
+       }
+       document.getElementById('year').textContent = new Date().getFullYear();
+   </script>
+   <script src="{% static 'js/profile.js' %}"></script>
 </body>
 </html>
