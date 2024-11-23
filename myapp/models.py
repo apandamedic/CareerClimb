@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class JobListing(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Link to the user
     company_name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
     post_url = models.URLField()
@@ -24,6 +26,11 @@ class JobListing(models.Model):
 
 
 class JobDescription(models.Model):
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+        default = 2
+        )  # Link to the user
     title = models.CharField(max_length=255)
     description = models.TextField()
 
@@ -44,6 +51,7 @@ class InterviewQuestion(models.Model):
     
     
 class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile") #Link to user
     name = models.CharField(max_length=100, blank=False, help_text="Name of the user")
     age = models.PositiveIntegerField(null=True, blank=True, help_text="Age of the user")
     goal = models.TextField(blank=True, help_text="User's career goals")
@@ -53,4 +61,4 @@ class UserProfile(models.Model):
     resume = models.FileField(upload_to='resumes/', null=True, blank=True, help_text="Resume/CV upload")
 
     def __str__(self):
-        return self.name or "Unnamed User"
+        return self.name or f"UserProfile of {self.user.username}"

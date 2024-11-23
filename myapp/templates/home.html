@@ -40,17 +40,18 @@
            <!-- Wishlist Section -->
            <div class="status-card wishlist">
                <h3>Wishlist</h3>
-               <p>2 Jobs</p>
+               <p>{{ wishlist_jobs.count }} Jobs</p>
                <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
                <div class="job-list">
+                    {% for job in wishlist_jobs %}
                    <div class="job-item">
-                       <p>Job Title 1</p>
-                       <span>Company</span>
+                       <p>{{ job.job_title }} </p>
+                       <span>{{ job.company_name }}</span>
+                       <a href="{% url 'individual_job_listing' job.id %}">View Details</a>
                    </div>
-                   <div class="job-item">
-                       <p>Job Title 2</p>
-                       <span>Company</span>
-                   </div>
+                   {% empty %}
+                   <p>No Jobs in Wishlist</p>
+                   {% endfor %}
                </div>
            </div>
 
@@ -58,13 +59,18 @@
            <!-- Applied Section -->
            <div class="status-card applied">
                <h3>Applied</h3>
-               <p>0 Jobs</p>
+               <p>{{ applied_jobs.count }} Jobs</p>
                <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
                <div class="job-list">
+                    {% for job in applied_jobs %}
                    <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
+                       <p>{{ job.job_title }}</p>
+                       <span>{{ job.company_name }}</span>
+                       <a href="{% url 'individual_job_listing' job.id %}">View Details</a>
                    </div>
+                   {% empty %}
+                   <p>No Jobs Applied To</p>
+                   {% endfor %}
                </div>
            </div>
 
@@ -72,13 +78,18 @@
            <!-- Offer Section -->
            <div class="status-card offer">
                <h3>Offer</h3>
-               <p>0 Jobs</p>
+               <p>{{ offer_jobs.count }} Jobs</p>
                <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
                <div class="job-list">
+                    {% for job in offer_jobs %}
                    <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
+                       <p>{{ job.job_title }}</p>
+                       <span>{{ job.company_name }}</span>
+                       <a href="{% url 'individual_job_listing' job.id %}">View Details</a>
                    </div>
+                   {% empty %}
+                   <p>No Offers Yet</p>
+                   {% endfor %}
                </div>
            </div>
 
@@ -86,21 +97,18 @@
            <!-- Favorites Section -->
            <div class="status-card favorites">
                <h3>Favorites</h3>
-               <p>3 Jobs</p>
+               <p>{{ favorites_jobs.count }} Jobs</p>
                <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
                <div class="job-list">
+                    {% for job in favorites_jobs %}
                    <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
+                       <p>{{ job.job_title }}</p>
+                       <span>{{ job.company_name }}</span>
+                       <a href="{% url 'individual_job_listing' job.id %}">View Details</a>
                    </div>
-                   <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
-                   </div>
-                   <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
-                   </div>
+                   {% empty %}
+                   <p>No Favorite Jobs</p>
+                   {% endfor %}
                </div>
            </div>
        </main>

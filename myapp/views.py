@@ -10,10 +10,12 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def profile(request):
    # Get the existing profile or create a new one for demonstration
-   profile = UserProfile.objects.first()  # Or filter by user if there's a login system
+   profile = get_object_or_404(UserProfile, user=request.user)  # Or filter by user if there's a login system
 
 
    if request.method == 'POST':
@@ -31,6 +33,7 @@ def room(request):
     return HttpResponse('Room')
 
 # Add job listing view
+@login_required
 def add_job_listing(request):
     if request.method == 'POST':
         # Retrieve form data from the POST request
@@ -50,6 +53,7 @@ def add_job_listing(request):
 
         # Create a new job entry in the database
         job_listing = JobListing.objects.create(
+            user = request.user,
             company_name=company_name,
             job_title=job_title,
             post_url=post_url,
@@ -68,8 +72,9 @@ def add_job_listing(request):
     return render(request, 'addJobListing.html')
 
 # Edit job listing view
+@login_required
 def edit_job_listing(request, job_id):
-    job = get_object_or_404(JobListing, id=job_id)
+    job = get_object_or_404(JobListing, id=job_id, user = request.user)
 
     if request.method == "POST":
         job.company_name = request.POST.get('company-name')
@@ -93,8 +98,9 @@ def edit_job_listing(request, job_id):
     return render(request, 'editJobListing.html', {'job': job})
 
 # Delete job listing view
+@login_required
 def delete_job_listing(request, job_id):
-    job = get_object_or_404(JobListing, id=job_id)
+    job = get_object_or_404(JobListing, id=job_id, user = request.user)
     # Delete the job object
     job.delete()
     # *********************** NEEDS TO BE EDITED ****************
@@ -103,14 +109,15 @@ def delete_job_listing(request, job_id):
     
 
 # Individual job listing view
+@login_required
 def individual_job_listing(request, job_id):
     # Retrieve the job listing by ID
-    job = get_object_or_404(JobListing, id=job_id)
+    job = get_object_or_404(JobListing, id=job_id, user = request.user)
 
     return render(request, 'individualJobListing.html', {'job': job})
 
 #Login view
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         email = request.POST['login-email']
         password = request.POST['login-password']
@@ -127,6 +134,7 @@ def login(request):
     return render(request, 'login.html')
 
 #Logout
+@login_required
 def logout_user(request):
     logout(request)
     messages.success(request, 'You have been logged out.')
@@ -135,11 +143,11 @@ def logout_user(request):
 #Register view
 def register(request):
     if request.method == 'POST':
-        first_name = request.POST['login-firstName']
-        last_name = request.POST['login-lastName']
-        email = request.POST['login-email']
-        password1 = request.POST['login-password']
-        password2 = request.POST['login-RePassword']
+        first_name = request.POST['register-firstName']
+        last_name = request.POST['register-lastName']
+        email = request.POST['register-email']
+        password1 = request.POST['register-password']
+        password2 = request.POST['register-RePassword']
 
         if password1 != password2:
             messages.error(request, 'Passwords do not match')
@@ -194,5 +202,17 @@ def format_questions(response_text):
 
 #home page view
 def home(request):
-   form = UserProfileForm()  # Instantiate your form
-   return render(request, 'home.html', {'form': form})
+    wishlist_jobs = JobListing.objects.filter(user=request.user, status='wishlist')
+    applied_jobs = JobListing.objects.filter(user=request.user, status='applied')
+    offer_jobs = JobListing.objects.filter(user=request.user, status='offer')
+    favorites_jobs = JobListing.objects.filter(user=request.user, status='favorites')
+
+    # Pass job data to the template
+    context = {
+        'wishlist_jobs': wishlist_jobs,
+        'applied_jobs': applied_jobs,
+        'offer_jobs': offer_jobs,
+        'favorites_jobs': favorites_jobs,
+    }
+
+    return render(request, 'home.html', context)

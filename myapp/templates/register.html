@@ -21,27 +21,27 @@
    
     <main>
         <div class="login-container">
-            <form class="login-form" action="{% url 'login' %}" method="POST">
+            <form class="login-form" action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
                 <div class = "login-form-group">
-                    <label for = "login-firstName">First Name</label>
-                    <input type = "text" id = "login-firstName" name = "login-firstName" placeholder = "Enter First Name" required>
+                    <label for = "register-firstName">First Name</label>
+                    <input type = "text" id = "register-firstName" name = "register-firstName" placeholder = "Enter First Name" required>
                 </div>
                 <div class = "login-form-group">
-                    <label for = "login-lastName">Last Name</label>
-                    <input type = "text" id = "login-lastName" name = "login-lastName" placeholder = "Enter Last Name" required>
+                    <label for = "register-lastName">Last Name</label>
+                    <input type = "text" id = "register-lastName" name = "register-lastName" placeholder = "Enter Last Name" required>
                 </div>
                 <div class="login-form-group">
-                    <label for="login-email">Email</label>
-                    <input type="text" id="login-email" name="login-email" placeholder="Enter Email" required>
+                    <label for="register-email">Email</label>
+                    <input type="text" id="register-email" name="register-email" placeholder="Enter Email" required>
                 </div>
                 <div class="login-form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" name="login-password" placeholder="Enter Password" required>
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="register-password" placeholder="Enter Password" required>
                 </div>
                 <div class="login-form-group">
-                    <label for="login-RePassword">Re-Enter Password</label>
-                    <input type="password" id="login-RePassword" name="login-RePassword" placeholder="Re-Enter Password" required>
+                    <label for="register-RePassword">Re-Enter Password</label>
+                    <input type="password" id="register-RePassword" name="register-RePassword" placeholder="Re-Enter Password" required>
                 </div>
                 <button type="submit" class="login-button">Sign Up</button>
             </form>
