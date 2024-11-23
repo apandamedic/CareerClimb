@@ -389,15 +389,14 @@ p1-button[type="submit"]:hover {
 .dashboard {
    flex: 1;
    padding: 20px;
-   background-color: #fdf5f0; /* Light peach background */
+   background-color: #f5e2d6; 
    display: flex;
    gap: 60px;
 }
 
-
 /* Status Card Styling */
 .status-card {
-   background-color: #d6c5b3; /* Light brown */
+   background-color: #d6c5b3;
    width: 100%;
    max-width: 250px;
    padding: 20px;
@@ -410,7 +409,6 @@ p1-button[type="submit"]:hover {
    align-items: center;
    gap: 10px;
 }
-
 
 .status-card h3 {
    font-size: 1.5rem;
