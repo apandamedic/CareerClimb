@@ -12,7 +12,6 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 
-@login_required
 def profile(request):
    # Get the existing profile or create a new one for demonstration
    profile = get_object_or_404(UserProfile, user=request.user)  # Or filter by user if there's a login system
@@ -33,7 +32,6 @@ def room(request):
     return HttpResponse('Room')
 
 # Add job listing view
-@login_required
 def add_job_listing(request):
     if request.method == 'POST':
         # Retrieve form data from the POST request
@@ -71,7 +69,6 @@ def add_job_listing(request):
     return render(request, 'addJobListing.html')
 
 # Edit job listing view
-@login_required
 def edit_job_listing(request, job_id):
     job = get_object_or_404(JobListing, id=job_id, user = request.user)
 
@@ -97,7 +94,6 @@ def edit_job_listing(request, job_id):
     return render(request, 'editJobListing.html', {'job': job})
 
 # Delete job listing view
-@login_required
 def delete_job_listing(request, job_id):
     job = get_object_or_404(JobListing, id=job_id, user = request.user)
     # Delete the job object
@@ -126,14 +122,14 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Login successful')
-            return redirect('profile')  # Redirect to the 'profile' view or home page
+            return redirect('home')  # Redirect to the 'profile' view or home page
         else:
             messages.error(request, 'Invalid email or password')
             return redirect('login')  # Redirect back to the login page if login fails
     return render(request, 'login.html')
 
 #Logout
-@login_required
+
 def logout_user(request):
     logout(request)
     messages.success(request, 'You have been logged out.')
