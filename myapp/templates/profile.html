@@ -37,43 +37,51 @@
 
        <!-- Profile Form Section -->
        <main class="profile">
-           <h1>Profile</h1>
-           <form method="post" enctype="multipart/form-data" class="profile-form">
-               {% csrf_token %}
-               <div class="form-group">
-                   <label for="name">Name:</label>
-                   <input type="text" id="name" name="name" placeholder="Input Name">
-               </div>
-               <div class="form-group">
+        <h1>Profile</h1>
+    
+        {% if is_authenticated %}
+            <!-- Form for Logged-in Users -->
+            <form method="post" enctype="multipart/form-data" class="profile-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Input Name" value="{{ profile.name }}">
+                </div>
+                <div class="form-group">
                     <label for="age">Age:</label>
-                    <input type="number" id="age" name="age" placeholder="Input Age">
-               </div>
-               <div class="form-group">
-                   <label for="goal">Goal:</label>
-                   <textarea id="goal" name="goal" placeholder="Write Goal"></textarea>
-               </div>
-               <div class="form-group">
-                   <label for="bio">Bio:</label>
-                   <textarea id="bio" name="bio" placeholder="Write Bio"></textarea>
-               </div>
-               <div class="form-group">
-                   <label for="education">Education:</label>
-                   <textarea id="education" name="education" placeholder="Write education level and history"></textarea>
-               </div>
-               <div class="form-group">
-                   <label for="additional-info">Additional Information:</label>
-                   <textarea id="additional-info" name="additional_info" placeholder="Additional Information"></textarea>
-               </div>
-               <div class="form-group">
-                   <label for="resume">Resume/CV:</label>
-                   <div class="file-upload" onclick="document.getElementById('resume').click();">
-                       <input type="file" id="resume" name="resume" style="display: none;" onchange="displayFileName(this)">
-                       <span id="upload-text">Upload</span>
-                   </div>
-               </div>
-               <button type="submit" class="profile-submit-button">Edit</button>
-           </form>
-       </main>
+                    <input type="number" id="age" name="age" placeholder="Input Age" value="{{ profile.age }}">
+                </div>
+                <div class="form-group">
+                    <label for="goal">Goal:</label>
+                    <textarea id="goal" name="goal" placeholder="Write Goal">{{ profile.goal }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bio">Bio:</label>
+                    <textarea id="bio" name="bio" placeholder="Write Bio">{{ profile.bio }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="education">Education:</label>
+                    <textarea id="education" name="education" placeholder="Write education level and history">{{ profile.education }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="additional-info">Additional Information:</label>
+                    <textarea id="additional-info" name="additional_info" placeholder="Additional Information">{{ profile.additional_info }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Resume/CV:</label>
+                    <div class="file-upload" onclick="document.getElementById('resume').click();">
+                        <input type="file" id="resume" name="resume" style="display: none;" onchange="displayFileName(this)">
+                        <span id="upload-text">Upload</span>
+                    </div>
+                </div>
+                <button type="submit" class="profile-submit-button">Edit</button>
+            </form>
+        {% else %}
+            <!-- Read-only Message for Guests -->
+            <p>Welcome, Guest!</p>
+            <p>Please <a href="{% url 'login' %}">log in</a> to edit your profile.</p>
+        {% endif %}
+    </main>
 
 
    </div>

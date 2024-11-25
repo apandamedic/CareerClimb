@@ -47,7 +47,7 @@ class InterviewQuestion(models.Model):
     
     
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
     goal = models.TextField(null=True, blank=True)

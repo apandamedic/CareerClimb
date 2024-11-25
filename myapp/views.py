@@ -10,20 +10,33 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
 #profile
-@login_required
+
 def profile(request):
-    # Get the user's profile or create one if it doesn't exist
-    profile, created = UserProfile.objects.get_or_create(user=request.user)
+    if request.user.is_authenticated:
+        # Get the user's profile or create one if it doesn't exist
+        profile, created = UserProfile.objects.get_or_create(user=request.user)
 
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')  # Redirect after saving
-    else:
-        form = UserProfileForm(instance=profile)
-    return render(request, 'profile.html', {'form': form, 'profile': profile})
+        if request.method == 'POST':
+            
+            form = UserProfileForm(request.POST, request.FILES, instance=profile)
+            if form.is_valid():
+                form.save()
+                return redirect('profile')  # Redirect after saving
+        else:
+            form = UserProfileForm(instance=profile)
 
+        return render(request, 'profile.html', {
+            'form': form,
+            'profile': profile,
+            'is_authenticated': True,
+        })
+
+    # For unauthenticated users, show a default read-only profile
+    return render(request, 'profile.html', {
+        'form': None,
+        'profile': None,
+        'is_authenticated': False,
+    })
 
 def room(request):
     return HttpResponse('Room')
