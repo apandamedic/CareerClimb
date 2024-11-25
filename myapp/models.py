@@ -1,5 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class JobListing(models.Model):
@@ -51,14 +53,22 @@ class InterviewQuestion(models.Model):
     
     
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile") #Link to user
-    name = models.CharField(max_length=100, blank=False, help_text="Name of the user")
-    age = models.PositiveIntegerField(null=True, blank=True, help_text="Age of the user")
-    goal = models.TextField(blank=True, help_text="User's career goals")
-    bio = models.TextField(blank=True, help_text="Short bio of the user")
-    education = models.TextField(blank=True, help_text="Education details")
-    additional_info = models.TextField(blank=True, help_text="Additional information")
-    resume = models.FileField(upload_to='resumes/', null=True, blank=True, help_text="Resume/CV upload")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    age = models.IntegerField(null=True, blank=True)
+    goal = models.TextField(null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+    education = models.TextField(null=True, blank=True)
+    additional_info = models.TextField(null=True, blank=True)
+    resume = models.FileField(upload_to='resumes/', null=True, blank=True)
 
     def __str__(self):
-        return self.name or f"UserProfile of {self.user.username}"
+        return self.user.username
+    
+# Automatically create or link UserProfile to User
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)  # Create profile if new user
+    else:
+        instance.userprofile.save()  # Update profile if user is updated
