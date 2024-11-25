@@ -6,8 +6,11 @@ import chardet
 from openai import OpenAI
 from .forms import UserProfileForm
 from .models import UserProfile
-from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 #profile
 
@@ -61,6 +64,7 @@ def add_job_listing(request):
 
         # Create a new job entry in the database
         job_listing = JobListing.objects.create(
+            user = request.user,
             company_name=company_name,
             job_title=job_title,
             post_url=post_url,
@@ -79,7 +83,7 @@ def add_job_listing(request):
 
 # Edit job listing view
 def edit_job_listing(request, job_id):
-    job = get_object_or_404(JobListing, id=job_id)
+    job = get_object_or_404(JobListing, id=job_id, user = request.user)
 
     if request.method == "POST":
         job.company_name = request.POST.get('company-name')
@@ -104,7 +108,7 @@ def edit_job_listing(request, job_id):
 
 # Delete job listing view
 def delete_job_listing(request, job_id):
-    job = get_object_or_404(JobListing, id=job_id)
+    job = get_object_or_404(JobListing, id=job_id, user = request.user)
     # Delete the job object
     job.delete()
 
@@ -113,19 +117,69 @@ def delete_job_listing(request, job_id):
     
 
 # Individual job listing view
+@login_required
 def individual_job_listing(request, job_id):
     # Retrieve the job listing by ID
-    job = get_object_or_404(JobListing, id=job_id)
+    job = get_object_or_404(JobListing, id=job_id, user = request.user)
 
     return render(request, 'individualJobListing.html', {'job': job})
 
 #Login view
-def login(request):
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST['login-email']
+        password = request.POST['login-password']
+
+        # Authenticate the user
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Login successful')
+            return redirect('home')  # Redirect to the 'profile' view or home page
+        else:
+            messages.error(request, 'Invalid email or password')
+            return redirect('login')  # Redirect back to the login page if login fails
     return render(request, 'login.html')
+
+#Logout
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'You have been logged out.')
+    return redirect('login')  # Redirect to the login page or homepage
 
 #Register view
 def register(request):
+    if request.method == 'POST':
+        first_name = request.POST['register-firstName']
+        last_name = request.POST['register-lastName']
+        email = request.POST['register-email']
+        password1 = request.POST['register-password']
+        password2 = request.POST['register-RePassword']
+
+        if password1 != password2:
+            messages.error(request, 'Passwords do not match')
+            return redirect('register')
+
+        if User.objects.filter(username=email).exists():
+            messages.error(request, 'Email already registered as username')
+            return redirect('register')
+
+        # Create the user
+        user = User.objects.create_user(username=email, email=email, password=password1)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+
+        # Automatically log in the user
+        login(request, user)
+        messages.success(request, 'Account created successfully')
+        return redirect('home')  # Redirect to your homepage or dashboard
     return render(request, 'register.html')
+
+#Forgot Password View
+def forgotPassword(request):
+    return render(request, 'forgotPassword.html')
 
 # the interview prep view
 def interview_prep_view(request):
@@ -156,29 +210,17 @@ def format_questions(response_text):
 
 #home page view
 def home(request):
-    # Fetch job listings based on their status
-    wishlist_jobs = JobListing.objects.filter(status='wishlist')
-    applied_jobs = JobListing.objects.filter(status='applied')
-    interviewing_jobs = JobListing.objects.filter(status='interviewing')
-    offer_jobs = JobListing.objects.filter(status='offer')
-    
-    # Instantiate your form
-    form = UserProfileForm()
-    
-    # Pass jobs and form to the context
+    wishlist_jobs = JobListing.objects.filter(user=request.user, status='wishlist')
+    applied_jobs = JobListing.objects.filter(user=request.user, status='applied')
+    offer_jobs = JobListing.objects.filter(user=request.user, status='offer')
+    favorites_jobs = JobListing.objects.filter(user=request.user, status='favorites')
+
+    # Pass job data to the template
     context = {
-        'form': form,
         'wishlist_jobs': wishlist_jobs,
         'applied_jobs': applied_jobs,
-        'interviewing_jobs': interviewing_jobs,
         'offer_jobs': offer_jobs,
+        'favorites_jobs': favorites_jobs,
     }
-    
+
     return render(request, 'home.html', context)
-
-#favorites
-#def favorites(request):
-    # Fetch all jobs marked as favorites by the logged-in user
-    #favorite_jobs = JobListing.objects.filter(user=request.user, is_favorite=True)
-
-    #return render(request, 'favorites.html', {'favorite_jobs': favorite_jobs})

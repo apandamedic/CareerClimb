@@ -10,8 +10,9 @@ urlpatterns = [
     path('delete-job/<int:job_id>/', views.delete_job_listing, name='delete_job_listing'),
     path('job/<int:job_id>/', views.individual_job_listing, name='individual_job_listing'),
     path('interview_prep_form/', views.interview_prep_view, name='interview_prep_form'),
-    path('login/', views.login, name = 'login'),
+    path('login/', views.login_view, name = 'login'),
+    path('logout/', views.logout_user, name='logout'),
     path('register/', views.register, name = 'register'),
     path('home/', views.home, name='home'),
-    #path('favorites/', views.favorites, name='favorites'),
+    path('forgotPassword/', views.forgotPassword, name = 'forgot-password'),
 ]

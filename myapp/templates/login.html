@@ -27,7 +27,7 @@
         </p>
     </div>
     <div class="login-container">
-        <form class="login-form" action="{% url 'profile' %}" method="POST">
+        <form class="login-form" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             <div class="login-form-group">
                 <label for="login-email">Email</label>
@@ -39,16 +39,24 @@
             </div>
             <button type="submit" class="login-button">Sign In</button>
             <div class="login-links">
-                <a href="/forgot-password" class="login-forgot-password-link">Forgot password?</a>
+                <a href="{% url 'forgot-password' %}" class="login-forgot-password-link">Forgot password?</a>
                 <a href="{% url 'register' %}" class="login-register-link">New User?<br>Make an Account</a>
             </div>
+            {% if messages %}
+            <ul>
+                {% for messages in messages %}
+                    <li>
+                        {{message}}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </form>
     </div>
 </main>
 
-    
-    <footer>
-        
-    </footer>
+<footer class="footer">
+    <p>&copy; <span id="year">2024</span> CareerClimb. All rights reserved.</p>
+</footer>
 </body>
 </html>

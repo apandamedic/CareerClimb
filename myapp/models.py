@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 class JobListing(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Link to the user
     company_name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
     post_url = models.URLField()
@@ -27,6 +28,11 @@ class JobListing(models.Model):
 
 
 class JobDescription(models.Model):
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+        default = 2
+        )  # Link to the user
     title = models.CharField(max_length=255)
     description = models.TextField()
 

@@ -1,4 +1,4 @@
-{% load static %}
+a{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +22,11 @@
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'interview_prep_form' %}">Interview Prep</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href = "{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
                 </ul>
                 <hr>
                 <ul>
