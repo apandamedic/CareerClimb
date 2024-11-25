@@ -13,6 +13,7 @@ body {
    min-height: 100vh;               /* Ensure the body takes at least the full viewport height */
    display: flex;                   /* Use flexbox for layout */
    flex-direction: column;          /* Arrange children in a column */
+   margin: 0;
 }
 
 
@@ -391,25 +392,24 @@ p1-button[type="submit"]:hover {
    padding: 20px;
    background-color: #f5e2d6; 
    display: flex;
-   gap: 60px;
+   gap: 100px;
 }
 
 /* Status Card Styling */
 .status-card {
-   background-color: #d6c5b3;
-   width: 100%;
-   max-width: 250px;
-   padding: 20px;
-   border-radius: 10px;
-   text-align: center;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   transition: transform 0.3s, box-shadow 0.3s;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 10px;
+    background-color: #d6c5b3;
+    width: 220px;                   /* Fixed width for consistency */
+    height: 300px;                  /* Fixed height for all cards */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;                      /* Consistent spacing between elements inside */
 }
-
 .status-card h3 {
    font-size: 1.5rem;
    color: #8c6747;
@@ -459,12 +459,16 @@ p1-button[type="submit"]:hover {
 
 
 .job-item {
-   background-color: #f5e2d6;
-   padding: 15px;
-   border-radius: 8px;
-   color: #8c6747;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #f5e2d6;
+    padding: 15px;
+    border-radius: 8px;
+    color: #8c6747;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 5px;
 }
 
 
@@ -475,7 +479,7 @@ p1-button[type="submit"]:hover {
 
 
 .job-item p {
-   font-size: 1.2rem;
+   font-size: 1rem;
    font-weight: bold;
    margin-bottom: 5px;
 }
@@ -487,17 +491,16 @@ p1-button[type="submit"]:hover {
 }
 /* Footer Styling */
 .footer {
-   background-color: #f5e2d6;
-   color: #633D34;
-   text-align: center;
-   padding: 20px;
-   width: 100%;
-   font-family: Arial, sans-serif;
-   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-   margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f5e2d6;
+    color: #633D34;
+    text-align: center;
+    padding: .5px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
-
-
 #2024 {
    font-weight: bold;
 }

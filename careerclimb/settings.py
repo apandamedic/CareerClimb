@@ -147,3 +147,5 @@ LOGGING = {
     },
 }
 
+LOGIN_URL = '/login/'  # Replace '/login/' with the actual login URL in your project
+

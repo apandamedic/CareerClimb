@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>CareerClimb Favorites</title>
+   <link rel="stylesheet" href="{% static 'css/favorites.css' %}">
+</head>
+<body>
+   <div class="container">
+
+       <!-- Sidebar Section -->
+       <aside class="sidebar">
+           <div class="logo">
+               <img src="{% static 'images/logo.png' %}" alt="Career Climb Logo">
+               <h1>Career Climb</h1>
+           </div>
+           <nav class="nav">
+               <ul>
+                   <li><a href="{% url 'home' %}">Home</a></li>
+                   <li><a href="{% url 'profile' %}">Profile</a></li>
+                   <li><a href="{% url 'interview_prep_form' %}">Interview Prep</a></li>
+                   <li><a href="{% url 'favorites' %}">Favorites</a></li>
+               </ul>
+               <hr>
+               <ul>
+                   <li><a href="{% url 'add_job_listing' %}">Add Job Listing</a></li>
+                   <li><a href="{% url 'edit_job_listing' job_id=1 %}">Edit Job Listing</a></li>
+                   <li><a href="{% url 'individual_job_listing' job_id=1 %}">Individual Job Listing</a></li>
+               </ul>
+           </nav>
+       </aside>
+
+       <!-- Main Favorites Section -->
+       <main class="favorites">
+           <h1>Your Favorites</h1>
+           <p>Jobs you have marked as favorites:</p>
+
+           <!-- Job List Section -->
+           <div class="job-list">
+               {% if favorite_jobs %}
+                   {% for job in favorite_jobs %}
+                   <div class="job-item">
+                       <p>{{ job.title }}</p>
+                       <span>{{ job.company }}</span>
+                       <a href="{% url 'individual_job_listing' job.id %}">View Details</a>
+                   </div>
+                   {% endfor %}
+               {% else %}
+                   <p>No jobs marked as favorites yet.</p>
+               {% endif %}
+           </div>
+       </main>
+   </div>
+
+   <!-- Footer Section -->
+   <footer class="footer">
+       <p>&copy; <span id="year">2024</span> CareerClimb. All rights reserved.</p>
+   </footer>
+</body>
+</html>

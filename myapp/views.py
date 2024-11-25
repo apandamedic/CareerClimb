@@ -6,24 +6,24 @@ import chardet
 from openai import OpenAI
 from .forms import UserProfileForm
 from .models import UserProfile
-
+from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
+#profile
+@login_required
 def profile(request):
-   # Get the existing profile or create a new one for demonstration
-   profile = UserProfile.objects.first()  # Or filter by user if there's a login system
+    # Get the user's profile or create one if it doesn't exist
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
 
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect after saving
+    else:
+        form = UserProfileForm(instance=profile)
+    return render(request, 'profile.html', {'form': form, 'profile': profile})
 
-   if request.method == 'POST':
-       form = UserProfileForm(request.POST, request.FILES, instance=profile)
-       if form.is_valid():
-           form.save()
-           return redirect('profile')  # Redirect to the profile page after saving
-   else:
-       form = UserProfileForm(instance=profile)
-
-
-   return render(request, 'profile.html', {'form': form, 'profile': profile})
 
 def room(request):
     return HttpResponse('Room')
@@ -143,5 +143,29 @@ def format_questions(response_text):
 
 #home page view
 def home(request):
-   form = UserProfileForm()  # Instantiate your form
-   return render(request, 'home.html', {'form': form})
+    # Fetch job listings based on their status
+    wishlist_jobs = JobListing.objects.filter(status='wishlist')
+    applied_jobs = JobListing.objects.filter(status='applied')
+    interviewing_jobs = JobListing.objects.filter(status='interviewing')
+    offer_jobs = JobListing.objects.filter(status='offer')
+    
+    # Instantiate your form
+    form = UserProfileForm()
+    
+    # Pass jobs and form to the context
+    context = {
+        'form': form,
+        'wishlist_jobs': wishlist_jobs,
+        'applied_jobs': applied_jobs,
+        'interviewing_jobs': interviewing_jobs,
+        'offer_jobs': offer_jobs,
+    }
+    
+    return render(request, 'home.html', context)
+
+#favorites
+#def favorites(request):
+    # Fetch all jobs marked as favorites by the logged-in user
+    #favorite_jobs = JobListing.objects.filter(user=request.user, is_favorite=True)
+
+    #return render(request, 'favorites.html', {'favorite_jobs': favorite_jobs})

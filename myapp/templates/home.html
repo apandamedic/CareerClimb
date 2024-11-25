@@ -37,74 +37,79 @@
 
        <!-- Main Dashboard Section -->
        <main class="dashboard">
-           <!-- Wishlist Section -->
-           <div class="status-card wishlist">
-               <h3>Wishlist</h3>
-               <p>2 Jobs</p>
-               <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
-               <div class="job-list">
-                   <div class="job-item">
-                       <p>Job Title 1</p>
-                       <span>Company</span>
-                   </div>
-                   <div class="job-item">
-                       <p>Job Title 2</p>
-                       <span>Company</span>
-                   </div>
-               </div>
-           </div>
+    <!-- Wishlist Section -->
+    <div class="status-card wishlist">
+        <h3>Wishlist</h3>
+        <p>{{ wishlist_jobs.count }} Jobs</p>
+        <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+        <div class="job-list">
+            {% for job in wishlist_jobs %}
+            <div class="job-item">
+                <p>{{ job.job_title }}</p>
+                <span>{{ job.company_name }}</span>
+                <a href="{{ job.post_url }}" target="_blank">View Job</a>
+            </div>
+            {% empty %}
+            <p>No jobs in wishlist.</p>
+            {% endfor %}
+        </div>
+    </div>
 
+    <!-- Applied Section -->
+    <div class="status-card applied">
+        <h3>Applied</h3>
+        <p>{{ applied_jobs.count }} Jobs</p>
+        <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+        <div class="job-list">
+            {% for job in applied_jobs %}
+            <div class="job-item">
+                <p>{{ job.job_title }}</p>
+                <span>{{ job.company_name }}</span>
+                <a href="{{ job.post_url }}" target="_blank">View Job</a>
+            </div>
+            {% empty %}
+            <p>No jobs applied yet.</p>
+            {% endfor %}
+        </div>
+    </div>
 
-           <!-- Applied Section -->
-           <div class="status-card applied">
-               <h3>Applied</h3>
-               <p>0 Jobs</p>
-               <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
-               <div class="job-list">
-                   <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
-                   </div>
-               </div>
-           </div>
+    <!-- Offer Section -->
+    <div class="status-card offer">
+        <h3>Offer</h3>
+        <p>{{ offer_jobs.count }} Jobs</p>
+        <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+        <div class="job-list">
+            {% for job in offer_jobs %}
+            <div class="job-item">
+                <p>{{ job.job_title }}</p>
+                <span>{{ job.company_name }}</span>
+                <a href="{{ job.post_url }}" target="_blank">View Job</a>
+            </div>
+            {% empty %}
+            <p>No job offers yet.</p>
+            {% endfor %}
+        </div>
+    </div>
 
+    <!-- Favorites Section -->
+    <div class="status-card favorites">
+        <h3>Favorites</h3>
+        <p>{{ favorites_jobs.count }} Jobs</p>
+        <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+        <div class="job-list">
+            {% for job in favorites_jobs %}
+            <div class="job-item">
+                <p>{{ job.job_title }}</p>
+                <span>{{ job.company_name }}</span>
+                <a href="{{ job.post_url }}" target="_blank">View Job</a>
+            </div>
+            {% empty %}
+            <p>No favorite jobs yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</main>
 
-           <!-- Offer Section -->
-           <div class="status-card offer">
-               <h3>Offer</h3>
-               <p>0 Jobs</p>
-               <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
-               <div class="job-list">
-                   <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
-                   </div>
-               </div>
-           </div>
-
-
-           <!-- Favorites Section -->
-           <div class="status-card favorites">
-               <h3>Favorites</h3>
-               <p>3 Jobs</p>
-               <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
-               <div class="job-list">
-                   <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
-                   </div>
-                   <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
-                   </div>
-                   <div class="job-item">
-                       <p>Job Title</p>
-                       <span>Company</span>
-                   </div>
-               </div>
-           </div>
-       </main>
-   </div>
 
 
    <!-- Footer Section -->
