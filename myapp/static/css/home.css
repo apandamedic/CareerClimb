@@ -392,7 +392,8 @@ p1-button[type="submit"]:hover {
    padding: 20px;
    background-color: #f5e2d6; 
    display: flex;
-   gap: 100px;
+   gap: 80px;
+   margin: 20px;
 }
 
 /* Status Card Styling */
@@ -410,8 +411,9 @@ p1-button[type="submit"]:hover {
     align-items: center;
     gap: 10px;                      /* Consistent spacing between elements inside */
 }
+
 .status-card h3 {
-   font-size: 1.5rem;
+   font-size: 1.8rem;
    color: #8c6747;
    margin-bottom: 5px;
 }
@@ -468,7 +470,7 @@ p1-button[type="submit"]:hover {
     display: flex;
     flex-direction: column;
     text-align: left;
-    gap: 5px;
+    gap: 10px;
 }
 
 
@@ -481,26 +483,36 @@ p1-button[type="submit"]:hover {
 .job-item p {
    font-size: 1rem;
    font-weight: bold;
-   margin-bottom: 5px;
+   margin-bottom: 0px;
 }
 
 
 .job-item span {
-   font-size: 1rem;
+   font-size: 0.9rem;
    color: #8c6747;
 }
+
+.job-item a {
+   font-size: 0.9rem;
+   color: #8c6747;
+}
+
 /* Footer Styling */
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f5e2d6;
-    color: #633D34;
-    text-align: center;
-    padding: .5px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+   position: fixed;                
+   bottom: 0;                     
+   left: 0;                      
+   width: 100%;                   
+   background-color: #f5e2d6;    
+   color: #633D34;               
+   text-align: center;             
+   padding: 20px;                  
+   font-family: Arial, sans-serif; 
+   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); 
+   margin-top: auto;             
 }
+
+
 #2024 {
    font-weight: bold;
 }
