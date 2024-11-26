@@ -394,13 +394,14 @@ p1-button[type="submit"]:hover {
    display: flex;
    gap: 80px;
    margin: 20px;
+   align-items: stretch;
 }
 
 /* Status Card Styling */
 .status-card {
     background-color: #d6c5b3;
     width: 220px;                   /* Fixed width for consistency */
-    height: 300px;                  /* Fixed height for all cards */
+    min-height: 300px;                  /* Fixed height for all cards */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -409,7 +410,9 @@ p1-button[type="submit"]:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;                      /* Consistent spacing between elements inside */
+    gap: 10px;       
+    flex-grow: 1; 
+    overflow-y: auto;
 }
 
 .status-card h3 {
@@ -459,7 +462,6 @@ p1-button[type="submit"]:hover {
    padding: 10px 0;
 }
 
-
 .job-item {
     background-color: #f5e2d6;
     padding: 15px;
@@ -496,6 +498,7 @@ p1-button[type="submit"]:hover {
    font-size: 0.9rem;
    color: #8c6747;
 }
+
 
 /* Footer Styling */
 .footer {
