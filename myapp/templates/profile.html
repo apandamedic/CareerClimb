@@ -51,39 +51,39 @@
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" placeholder="Input Name" value="{{ profile.name }}">
-                    {% if profile and profile.is_saved %}{% endif %}>
+                    {% if profile and profile.is_saved %}{% endif %}
                 </div>
                 <div class="form-group">
                     <label for="age">Age:</label>
                     <input type="number" id="age" name="age" placeholder="Input Age" value="{{ profile.age }}">
-                    {% if profile and profile.is_saved %}{% endif %}>
+                    {% if profile and profile.is_saved %}{% endif %}
                 </div>
                 <div class="form-group">
                     <label for="goal">Goal:</label>
                     <textarea id="goal" name="goal" placeholder="Write Goal">{{ profile.goal }}</textarea>
-                    {% if profile and profile.is_saved %}{% endif %}>
+                    {% if profile and profile.is_saved %}{% endif %}
                 </div>
                 <div class="form-group">
                     <label for="bio">Bio:</label>
                     <textarea id="bio" name="bio" placeholder="Write Bio">{{ profile.bio }}</textarea>
-                    {% if profile and profile.is_saved %}{% endif %}>
+                    {% if profile and profile.is_saved %}{% endif %}
                 </div>
                 <div class="form-group">
                     <label for="education">Education:</label>
                     <textarea id="education" name="education" placeholder="Write education level and history">{{ profile.education }}</textarea>
-                    {% if profile and profile.is_saved %}{% endif %}>
+                    {% if profile and profile.is_saved %}{% endif %}
                 </div>
                 <div class="form-group">
                     <label for="additional-info">Additional Information:</label>
                     <textarea id="additional-info" name="additional_info" placeholder="Additional Information">{{ profile.additional_info }}</textarea>
-                    {% if profile and profile.is_saved %}{% endif %}>
+                    {% if profile and profile.is_saved %}{% endif %}
                 </div>
                 <div class="form-group">
                     <label for="resume">Resume/CV:</label>
                     <div class="file-upload" onclick="document.getElementById('resume').click();">
                         <input type="file" id="resume" name="resume" style="display: none;" onchange="displayFileName(this)">
                         <span id="upload-text">Upload</span>
-                        {% if profile and profile.is_saved %}{% endif %}>
+                        {% if profile and profile.is_saved %}{% endif %}
                     </div>
                 </div>
                 
