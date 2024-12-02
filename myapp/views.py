@@ -23,7 +23,9 @@ def profile(request):
             
             form = UserProfileForm(request.POST, request.FILES, instance=profile)
             if form.is_valid():
-                form.save()
+                profile = form.save(commit=False)
+                profile.is_saved = True  
+                profile.save()
                 return redirect('profile')  # Redirect after saving
         else:
             form = UserProfileForm(instance=profile)
@@ -39,6 +41,7 @@ def profile(request):
         'form': None,
         'profile': None,
         'is_authenticated': False,
+        'is_editable': False,
     })
 
 def room(request):

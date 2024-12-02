@@ -61,6 +61,7 @@ class UserProfile(models.Model):
     education = models.TextField(null=True, blank=True)
     additional_info = models.TextField(null=True, blank=True)
     resume = models.FileField(upload_to='resumes/', null=True, blank=True)
+    is_saved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
