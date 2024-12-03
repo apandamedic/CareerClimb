@@ -679,6 +679,7 @@ padding-bottom: var(--v-progress-gap);
     justify-content: center;
     background-color: #2C761BA3;
     transition: background-color 0.3s ease;
+    margin-left: 20px;
 }
 
 .ip-generate-button:hover {
@@ -710,6 +711,8 @@ padding-bottom: var(--v-progress-gap);
     overflow: auto;
     height: 610px; 
     display: flex;  
+    text-decoration: none;
+    max-height: 800px;
   }
 
   .iq-container{
@@ -718,3 +721,17 @@ padding-bottom: var(--v-progress-gap);
     flex-grow: 1;
     padding: 20px;
   }
+
+  .iq-questions ul {
+    list-style: none; 
+    padding: 0;
+    margin: 0; 
+}
+
+.iq-questions li {
+    margin-bottom: 10px;
+}
+
+.iq-questions {
+    max-height: 570px;
+}
