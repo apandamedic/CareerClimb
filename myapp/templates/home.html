@@ -76,6 +76,42 @@
         </div>
     </div>
 
+    <!-- Interviewing Section -->
+    <div class="status-card interviewing">
+        <h3>Interviewing</h3>
+        <p>{{ interviewing_jobs.count }} Jobs</p>
+        <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+        <div class="job-list">
+            {% for job in interviewing_jobs %}
+            <div class="job-item">
+                <p>{{ job.job_title }}</p>
+                <span>{{ job.company_name }}</span>
+                <a href="{% url 'individual_job_listing' job_id=job.id %}">View Job</a>
+            </div>
+            {% empty %}
+            <p>No jobs in the interviewing stage yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Follow-Up Section -->
+    <div class="status-card follow-up">
+        <h3>Follow-Up</h3>
+        <p>{{ follow_up_jobs.count }} Jobs</p>
+        <a href="{% url 'add_job_listing' %}"><button>+</button></a> <!-- Linked to Add Job Page -->
+        <div class="job-list">
+            {% for job in follow_up_jobs %}
+            <div class="job-item">
+                <p>{{ job.job_title }}</p>
+                <span>{{ job.company_name }}</span>
+                <a href="{% url 'individual_job_listing' job_id=job.id %}">View Job</a>
+            </div>
+            {% empty %}
+            <p>No jobs requiring follow-up yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
     <!-- Offer Section -->
     <div class="status-card offer">
         <h3>Offer</h3>

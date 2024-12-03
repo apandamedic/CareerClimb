@@ -217,6 +217,8 @@ def home(request):
     applied_jobs = JobListing.objects.filter(user=request.user, status='applied')
     offer_jobs = JobListing.objects.filter(user=request.user, status='offer')
     favorites_jobs = JobListing.objects.filter(user=request.user, status='favorites')
+    follow_up_jobs = JobListing.objects.filter(user=request.user, status='follow-up')
+    interviewing_jobs = JobListing.objects.filter(user=request.user, status='interviewing')
 
     # Pass job data to the template
     context = {
@@ -224,6 +226,8 @@ def home(request):
         'applied_jobs': applied_jobs,
         'offer_jobs': offer_jobs,
         'favorites_jobs': favorites_jobs,
+        'follow_up_jobs': follow_up_jobs,
+        'interviewing_jobs': interviewing_jobs,
     }
 
     return render(request, 'home.html', context)
